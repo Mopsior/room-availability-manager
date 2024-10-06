@@ -1,7 +1,7 @@
 "use server"
 
 import { cookies } from "next/headers"
-import { Account, Client } from "node-appwrite"
+import { Account, Client, Databases } from "node-appwrite"
 
 export const createSessionClient = async () => {
     const client = new Client()
@@ -37,8 +37,23 @@ export const createAdminClient = async () => {
 export const getLoggedInUser = async () => {
     try {
         const { account } = await createSessionClient()
+
         return await account.get()
     } catch (err) {
         return null
+    }
+}
+
+export const getDatabases = () => {
+    const client = new Client()
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT as string)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT as string)
+
+    const databases = new Databases(client)
+
+    return {
+        get database() {
+            return databases
+        }
     }
 }

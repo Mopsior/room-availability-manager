@@ -4,9 +4,6 @@ import { redirect } from "next/navigation"
 import { ID } from "node-appwrite"
 
 export default async function SignupPage() {
-    const user = await getLoggedInUser()
-    if (user) redirect("/rooms")
-
     return (
         <>
         <form action={sendEmail}>
@@ -55,6 +52,7 @@ const login = async (formData: FormData) => {
         path: '/',
         sameSite: 'lax',
     })
+    cookies().delete('user-id')
 
     redirect('/rooms')
 }
