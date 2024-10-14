@@ -3,7 +3,7 @@
 export default function Home() {
     return (
         <>
-            It works!
+            It should be blocked
         </>
     )
 }
