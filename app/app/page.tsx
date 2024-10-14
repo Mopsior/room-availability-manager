@@ -1,9 +1,12 @@
 'use client'
 
-export default function Home() {
+import { RoomList } from "@/components/RoomsList/RoomList"
+
+export default function AppHome() {
+
     return (
         <>
-            It should be blocked
-        </>
+            <RoomList />
+        </> 
     )
 }
