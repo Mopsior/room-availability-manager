@@ -1,0 +1,27 @@
+.block {
+    width: 150px;
+    height: min-content;
+    padding: 20px;
+    border: 5px solid;
+    border-radius: 15px;
+    cursor: pointer;
+    overflow-wrap: break-word;
+    text-align: center;
+    margin: 5px;
+    box-shadow: 8px 8px 15px -10px rgba(66, 68, 90, 0.75);
+    transition: .15s ease-in-out;
+
+}
+
+.block:hover {
+    filter: brightness(80%);
+}
+
+.empty {
+    border-color: #0f9e56;
+}
+
+.full {
+    border-color: rgb(236, 31, 31);
+}
+
