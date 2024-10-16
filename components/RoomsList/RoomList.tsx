@@ -8,9 +8,6 @@ export const RoomList = () => {
 
     useEffect(() => {
         const unsub = onSnapshot(collection(db, 'rooms'), (snapshot) => {
-            const source = snapshot.metadata.hasPendingWrites ? "Local" : "Server";
-            console.log(source, " data: ", snapshot.docs);
-            console.log(snapshot.docChanges())
             setRooms(snapshot.docs)
         })
         return () => {console.log('unsubscribed'); unsub()}
