@@ -13,14 +13,10 @@ export default function SignUpLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body>
-                <Providers>
-                    <SecureLayout loginPage={true}>
-                        {children}
-                    </SecureLayout>
-                </Providers>
-            </body>
-        </html>
+        <Providers>
+            <SecureLayout loginPage={true}>
+                {children}
+            </SecureLayout>
+        </Providers>
     );
 }
