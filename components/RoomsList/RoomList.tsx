@@ -3,7 +3,6 @@ import { db } from "@/lib/firebase"
 import { collection, DocumentData, onSnapshot, QueryDocumentSnapshot } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { AdminBlock, Block } from "../RoomBlock/Block"
-import { AddRoom } from "../AddRoom/AddRoom"
 
 export const RoomList = () => {
     const [rooms, setRooms] = useState<QueryDocumentSnapshot<DocumentData>[]>()

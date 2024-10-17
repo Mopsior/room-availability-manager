@@ -63,8 +63,6 @@ export const AdminBlock = ({ id, name, description, full, last_edit }: { id: str
     const [elapsedTime, setElapsedTime] = useState<string>('')
     const { toast } = useToast()
 
-    id == 'j8A1daadiRCPzwIblSfp' && console.log(full, id)
-
     const changeAvailability = async () => {
         setElapsedTime('0:00')
         try {
