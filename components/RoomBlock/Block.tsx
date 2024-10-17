@@ -4,6 +4,9 @@ import { deleteDoc, doc, Timestamp, updateDoc } from 'firebase/firestore'
 import styles from './Block.module.css'
 import { db } from '@/lib/firebase'
 import { useEffect, useState } from 'react'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { Button } from '../ui/button'
+import { useToast } from '@/hooks/use-toast'
 
 /**
  * Room block component
@@ -49,15 +52,18 @@ export const Block = ({ id, name, description, full, last_edit }: { id: string, 
         <div
             className={`${styles.block} ${full ? styles.full : styles.empty}`}
             onClick={() => handleClick()} >
-            <h3 className={styles.title}>{name}</h3>
+            <h3 className={`${styles.title} scroll-m-20 text-2xl font-semibold tracking-tight`}>{name}</h3>
             <p>{description}</p>
-            {full ? <p>{elapsedTime}</p> : null}
+            {full && <p className={styles.small}>{elapsedTime}</p>}
         </div>
     )
 }
 
 export const AdminBlock = ({ id, name, description, full, last_edit }: { id: string, name: string, description: string, full: boolean, last_edit: Timestamp }) => {
     const [elapsedTime, setElapsedTime] = useState<string>('')
+    const { toast } = useToast()
+
+    id == 'j8A1daadiRCPzwIblSfp' && console.log(full, id)
 
     const changeAvailability = async () => {
         setElapsedTime('0:00')
@@ -96,16 +102,42 @@ export const AdminBlock = ({ id, name, description, full, last_edit }: { id: str
  
         return () => clearInterval(intervalId)
      }, [last_edit])
+
+    const copyID = async () => {
+        try {
+            await navigator.clipboard.writeText(id)
+            toast({
+                title: 'Skopiowano ID'
+            })
+        } catch (err) {
+            console.error(err)
+            toast({
+                title: "Nie udało się skopiować ID",
+                description: "Sprawdź ustawienia przeglądarki i spróbuj ponownie",
+                variant: 'destructive'
+            })
+        }
+    }
  
     return (
         <div
-            className={`${styles.block} ${full ? styles.full : styles.empty}`}>
-            <span>{id}</span>
-            <h3 className={styles.title}>{name}</h3>
+            className={`${styles.block} ${full ? styles.full : styles.empty} ${styles.admin_block}`}>
+            <span className={styles.small}>{id}</span>
+            <h3 className={`${styles.title} scroll-m-20 text-2xl font-semibold tracking-tight`}>{name}</h3>
             <p>{description}</p>
-            <p>{elapsedTime}</p>
-            <button onClick={() => changeAvailability()}>{ full ? 'Opuść pokój' : 'Zajmij pokój' }</button>
-            <button onClick={() => deleteRoom()}>Usuń pokój</button>
+            {full && <p className={styles.small}>{elapsedTime}</p>}
+            <Popover>
+                <PopoverTrigger asChild>
+                    <Button variant='outline' className={`mt-2 ${styles.button}`}>Opcje</Button>
+                </PopoverTrigger>
+                <PopoverContent asChild>
+                    <div className={styles.content}>
+                        <Button onClick={() => changeAvailability()} variant={'outline'}>{full ? 'Opuść pokój' : 'Zajmij pokój'}</Button>
+                        <Button onClick={() => copyID()} variant={'outline'}>Skopiuj ID</Button><br />
+                        <Button onClick={() => deleteRoom()} variant={'destructive'} className='mt-2'>Usuń pokój</Button>
+                    </div>
+                </PopoverContent>
+            </Popover>
         </div>
     )
 }

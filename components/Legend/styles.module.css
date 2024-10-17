@@ -1,23 +1,23 @@
 .legend {
-    padding: 10px;
     width: fit-content;
     height: fit-content;
     position: absolute;
     bottom: 20px;
     left: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 24px 48px 0 rgba(0,0,0,0.16);
 }
 
-.fr, .sr {
+.content {
+    padding: 15px;
+}
+
+.row {
     display: flex;
 }
-
-.sr {
-    margin-top: 10px;
-}
-
-.fr p, .sr p {
+.row p {
     margin-left: 10px;
     margin-top: 3px;
+}
+
+.second_row {
+    margin-top: 10px;
 }
