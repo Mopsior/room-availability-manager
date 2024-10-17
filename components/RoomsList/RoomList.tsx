@@ -34,7 +34,7 @@ export const AdminRoomList = () => {
 
     return (
         <>
-            <AddRoom />
+            {/* <AddRoom /> */}
             { rooms?.map(room => <AdminBlock name={room.data().name} description={room.data().description} full={room.data().full} id={room.id} last_edit={room.data().last_edit} key={room.id}/>) }
         </>
     )

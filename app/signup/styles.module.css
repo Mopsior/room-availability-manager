@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(110deg, #ffffff 1%, #7c3aed 20%, #000000 95%);
+}
+
+.card {
+    width: 40%;
+}
+
+@media screen and (max-width: 700px) {
+    .card {
+        width: 80%;
+    }
+}
