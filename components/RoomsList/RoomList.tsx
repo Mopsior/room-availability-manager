@@ -15,7 +15,7 @@ export const RoomList = () => {
 
     return (
         <>
-             { rooms?.map(room => <Block name={room.data().name} description={room.data().description} full={room.data().full} id={room.id} key={room.id} />) }
+             { rooms?.map(room => <Block name={room.data().name} description={room.data().description} full={room.data().full} last_edit={room.data().last_edit} id={room.id} key={room.id} />) }
         </>
     )
 }
