@@ -61,7 +61,8 @@ export const AddRoom = () => {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle className="scroll-m-20 border-b pb-3 text-3xl font-semibold tracking-tight first:mt-0">Tworzenie pokoju</DialogTitle>
+                    <DialogTitle>Tworzenie pokoju</DialogTitle>
+                    <DialogDescription>Stwórz nowy pokój, aby użytkownicy mogli go kontrolować</DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>

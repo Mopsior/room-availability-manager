@@ -28,21 +28,3 @@ export const RoomList = ({ asAdmin }: { asAdmin?: boolean }) => {
         </>
     )
 }
-
-// export const AdminRoomList = () => {
-//     const [rooms, setRooms] = useState<QueryDocumentSnapshot<DocumentData>[]>()
-
-//     useEffect(() => {
-//         const unsub = onSnapshot(collection(db, 'rooms'), (snapshot) => {
-//             setRooms(snapshot.docs)
-//         })
-//         return () => {console.log('unsubscribed'); unsub()}
-//     }, [])
-
-//     return (
-//         <>
-//             {/* <AddRoom /> */}
-//             { rooms?.map(room => <AdminBlock name={room.data().name} description={room.data().description} full={room.data().full} id={room.id} last_edit={room.data().last_edit} key={room.id}/>) }
-//         </>
-//     )
-// }

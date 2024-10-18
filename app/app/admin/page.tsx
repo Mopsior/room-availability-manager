@@ -9,7 +9,7 @@ export default function AdminPage() {
     return (
         <>
             <SwitchPanels />
-            <div className={styles.title}>
+            <div className={`${styles.title} [@media(max-width:700px)]:mt-[60px]`}>
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Panel Administracyjny</h1>
                 <p>Aby zarządzać pokojami, rozwiń opcje klikając w przycisk</p>
                 <AddRoom />

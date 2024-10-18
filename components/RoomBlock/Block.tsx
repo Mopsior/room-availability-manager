@@ -1,12 +1,13 @@
 'use client'
 
 import { deleteDoc, doc, Timestamp, updateDoc } from 'firebase/firestore'
-import styles from './Block.module.css'
+import styles from './styles.module.css'
 import { db } from '@/lib/firebase'
 import { useEffect, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Button } from '../ui/button'
 import { useToast } from '@/hooks/use-toast'
+import { UpdateDialog } from './Dialog'
 
 /**
  * Room block component
@@ -130,9 +131,10 @@ export const AdminBlock = ({ id, name, description, full, last_edit }: { id: str
                 </PopoverTrigger>
                 <PopoverContent asChild>
                     <div className={styles.content}>
-                        <Button onClick={() => changeAvailability()} variant={'outline'}>{full ? 'Opuść pokój' : 'Zajmij pokój'}</Button>
-                        <Button onClick={() => copyID()} variant={'outline'}>Skopiuj ID</Button><br />
-                        <Button onClick={() => deleteRoom()} variant={'destructive'} className='mt-2'>Usuń pokój</Button>
+                        <Button onClick={() => changeAvailability()} variant={'outline'} className='mr-2'>{full ? 'Opuść pokój' : 'Zajmij pokój'}</Button>
+                        <Button onClick={() => copyID()} variant={'outline'} className='ml-2'>Skopiuj ID</Button>
+                        <UpdateDialog id={id} name={name} description={description} />
+                        <Button onClick={() => deleteRoom()} variant={'destructive'} className='ml-2 mt-2'>Usuń pokój</Button>
                     </div>
                 </PopoverContent>
             </Popover>
