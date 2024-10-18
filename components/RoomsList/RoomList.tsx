@@ -4,7 +4,7 @@ import { collection, DocumentData, onSnapshot, QueryDocumentSnapshot } from "fir
 import { useEffect, useState } from "react"
 import { AdminBlock, Block } from "../RoomBlock/Block"
 
-export const RoomList = () => {
+export const RoomList = ({ asAdmin }: { asAdmin?: boolean }) => {
     const [rooms, setRooms] = useState<QueryDocumentSnapshot<DocumentData>[]>()
 
     useEffect(() => {
@@ -14,27 +14,35 @@ export const RoomList = () => {
         return () => {console.log('unsubscribed'); unsub()}
     }, [])
 
+    if (asAdmin) {
+        return (
+            <>
+                { rooms?.map(room => <AdminBlock name={room.data().name} description={room.data().description} full={room.data().full} id={room.id} last_edit={room.data().last_edit} key={room.id}/>) }
+            </>
+        )
+    }
+
     return (
         <>
-             { rooms?.map(room => <Block name={room.data().name} description={room.data().description} full={room.data().full} last_edit={room.data().last_edit} id={room.id} key={room.id} />) }
+            { rooms?.map(room => <Block name={room.data().name} description={room.data().description} full={room.data().full} last_edit={room.data().last_edit} id={room.id} key={room.id} />) }
         </>
     )
 }
 
-export const AdminRoomList = () => {
-    const [rooms, setRooms] = useState<QueryDocumentSnapshot<DocumentData>[]>()
+// export const AdminRoomList = () => {
+//     const [rooms, setRooms] = useState<QueryDocumentSnapshot<DocumentData>[]>()
 
-    useEffect(() => {
-        const unsub = onSnapshot(collection(db, 'rooms'), (snapshot) => {
-            setRooms(snapshot.docs)
-        })
-        return () => {console.log('unsubscribed'); unsub()}
-    }, [])
+//     useEffect(() => {
+//         const unsub = onSnapshot(collection(db, 'rooms'), (snapshot) => {
+//             setRooms(snapshot.docs)
+//         })
+//         return () => {console.log('unsubscribed'); unsub()}
+//     }, [])
 
-    return (
-        <>
-            {/* <AddRoom /> */}
-            { rooms?.map(room => <AdminBlock name={room.data().name} description={room.data().description} full={room.data().full} id={room.id} last_edit={room.data().last_edit} key={room.id}/>) }
-        </>
-    )
-}
+//     return (
+//         <>
+//             {/* <AddRoom /> */}
+//             { rooms?.map(room => <AdminBlock name={room.data().name} description={room.data().description} full={room.data().full} id={room.id} last_edit={room.data().last_edit} key={room.id}/>) }
+//         </>
+//     )
+// }
