@@ -16,3 +16,20 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.navbar {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-bottom: 0;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        position: inherit;
+        justify-content: center;
+    }
+}
