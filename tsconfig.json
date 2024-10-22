@@ -18,7 +18,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@components/*": ["./components/*"],
+      "@shadcn/*": ["./components/ui/*"],
+      "@fb/*": ["./utils/firebase/*"],
+      "@fb": ["./utils/firebase/firebase.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

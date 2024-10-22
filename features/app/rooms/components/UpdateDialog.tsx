@@ -7,15 +7,15 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "@/components/ui/dialog"
-import { Button } from "../ui/button";
+} from "@shadcn/dialog"
+import { Button } from "@shadcn/button";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shadcn/form";
 import { useToast } from "@/hooks/use-toast";
-import { db } from "@/lib/firebase";
-import { Input } from "../ui/input";
+import { db } from "@fb";
+import { Input } from "@shadcn/input";
 import { useState } from "react";
 
 const formSchema = z.object({

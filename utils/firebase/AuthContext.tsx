@@ -1,6 +1,6 @@
 'use client'
 
-import app from "@/lib/firebase";
+import app from "@fb";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import { ReactNode } from "react";

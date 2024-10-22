@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from "next/navigation"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shadcn/select"
 
 export const SwitchPanels = () => {
     const router = useRouter()

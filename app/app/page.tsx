@@ -1,10 +1,10 @@
 'use client'
 
-import { RoomList } from "@/components/RoomsList/RoomList"
+import { RoomList } from "@/features/app/rooms/components/List"
 import styles from './styles.module.css'
-import { Legend } from "@/components/Legend/Legend"
+import { Legend } from "@/features/app/rooms/components/Legend"
 import { Separator } from "@/components/ui/separator"
-import { Account } from "@/components/Account/Account"
+import { Account } from "@/features/app/_components/Account"
 
 export default function AppHome() {
     return (

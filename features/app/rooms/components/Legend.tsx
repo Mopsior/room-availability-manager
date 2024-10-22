@@ -1,5 +1,5 @@
-import { Card, CardContent } from '../ui/card'
-import styles from './styles.module.css'
+import { Card, CardContent } from '@shadcn/card'
+import styles from '@/styles/app/rooms/components/Legend.module.css'
 
 export const Legend = () => {
     const rectSize = 30

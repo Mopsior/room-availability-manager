@@ -1,9 +1,9 @@
 'use client'
 
-import { useAuthContext } from "@/utils/firebase/AuthContext"
-import { Button } from "../ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu"
-import { Avatar, AvatarFallback } from "../ui/avatar"
+import { useAuthContext } from "@fb/AuthContext"
+import { Button } from "@shadcn/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@shadcn/dropdown-menu"
+import { Avatar, AvatarFallback } from "@shadcn/avatar"
 import { getAuth, signOut } from "firebase/auth"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
