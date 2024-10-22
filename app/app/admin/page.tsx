@@ -1,10 +1,10 @@
-import { Legend } from "@/components/Legend/Legend";
-import { RoomList } from "@/components/RoomsList/RoomList";
+import { Legend } from "@/features/app/rooms/components/Legend";
+import { RoomList } from "@/features/app/rooms/components/List";
 import styles from './../styles.module.css'
-import { Separator } from "@/components/ui/separator";
-import { AddRoom } from "@/components/AddRoom/AddRoom";
-import { SwitchPanels } from "@/components/SwitchPanels/SwitchPanel";
-import { Account } from "@/components/Account/Account";
+import { Separator } from "@shadcn/separator";
+import { AddRoom } from "@/features/app/rooms/components/AddRoom";
+import { SwitchPanels } from "@/features/app/_components/SwitchPanel";
+import { Account } from "@/features/app/_components/Account";
 
 export default function AdminPage() {
     return (

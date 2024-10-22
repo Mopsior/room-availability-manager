@@ -1,13 +1,13 @@
 'use client'
 
 import { deleteDoc, doc, Timestamp, updateDoc } from 'firebase/firestore'
-import styles from './styles.module.css'
-import { db } from '@/lib/firebase'
+import styles from '@/styles/app/rooms/components/Room.module.css'
+import { db } from '@/utils/firebase/firebase'
 import { useEffect, useState } from 'react'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Button } from '../ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@shadcn/popover'
+import { Button } from '@shadcn/button'
 import { useToast } from '@/hooks/use-toast'
-import { UpdateDialog } from './Dialog'
+import { UpdateDialog } from './UpdateDialog'
 
 /**
  * Room block component
@@ -15,8 +15,9 @@ import { UpdateDialog } from './Dialog'
  * @param name Room name (ex. room number: 101)
  * @param description Room description (ex. Meeting room)
  * @param full Is room occupied
+ * @param last_edit Last room occupation update date
  */
-export const Block = ({ id, name, description, full, last_edit }: { id: string, name: string, description: string, full: boolean, last_edit: Timestamp }) => {
+export const Room = ({ id, name, description, full, last_edit }: { id: string, name: string, description: string, full: boolean, last_edit: Timestamp }) => {
     const [elapsedTime, setElapsedTime] = useState<string>('')
 
     const handleClick = async () => {
@@ -60,7 +61,15 @@ export const Block = ({ id, name, description, full, last_edit }: { id: string, 
     )
 }
 
-export const AdminBlock = ({ id, name, description, full, last_edit }: { id: string, name: string, description: string, full: boolean, last_edit: Timestamp }) => {
+/**
+ * Admin Room component
+ * @param id Room document ID
+ * @param name Room name (ex. room number: 101)
+ * @param description Room description (ex. Meeting room)
+ * @param full Is room occupied
+ * @param last_edit Last room occupation update date
+ */
+export const AdminRoom = ({ id, name, description, full, last_edit }: { id: string, name: string, description: string, full: boolean, last_edit: Timestamp }) => {
     const [elapsedTime, setElapsedTime] = useState<string>('')
     const { toast } = useToast()
 

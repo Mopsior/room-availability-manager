@@ -1,6 +1,6 @@
 'use client'
 
-import { db } from "@/lib/firebase"
+import { db } from "@/utils/firebase/firebase"
 import { useAuthContext } from "@/utils/firebase/AuthContext"
 import { doc, getDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation"
