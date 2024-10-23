@@ -1,9 +1,6 @@
 .title {
     padding: 20px;
     text-align: center;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .title p {
@@ -27,9 +24,21 @@
     flex-wrap: wrap;
 }
 
-@media (max-width: 700px) {
+.title h1 {
+   font-size: 48px;
+   line-height: 1; 
+   font-weight: 800;
+   letter-spacing: -0.4px;
+
+}
+
+@media (max-width: 1080px) {
     .navbar {
         position: inherit;
         justify-content: center;
+        gap: 10px
+    }
+    .title h1 {
+        font-size: 32px;
     }
 }

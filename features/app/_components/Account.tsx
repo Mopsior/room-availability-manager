@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@shadcn/avatar"
 import { getAuth, signOut } from "firebase/auth"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
+import { HTMLAttributes } from "react"
 
 const auth = getAuth()
 export const Account = () =>{
@@ -34,7 +35,7 @@ export const Account = () =>{
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant={'outline'} className="mt-2 md:mt-0">
+                <Button variant={'outline'}>
                     <Avatar className="py-1 px-1" >
                         <AvatarFallback>
                             {user?.email?.slice(0, 2) || 'Aa'}
