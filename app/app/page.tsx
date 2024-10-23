@@ -1,7 +1,7 @@
 'use client'
 
 import { RoomList } from "@/features/app/rooms/components/List"
-import styles from './styles.module.css'
+import styles from '@/styles/app/styles.module.css'
 import { Legend } from "@/features/app/rooms/components/Legend"
 import { Separator } from "@/components/ui/separator"
 import { Account } from "@/features/app/_components/Account"
@@ -13,7 +13,7 @@ export default function AppHome() {
                 <Account />
             </div>
             <div className={styles.title}>
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Elektronik - Dni otwarte</h1>
+                <h1>Elektronik - Dni otwarte</h1>
                 <p>Klknij przycisk z numerem sali, aby zmienić jego dostępność</p>
             </div>
             <Separator className="mb-4 mx-auto w-4/5" />

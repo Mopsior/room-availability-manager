@@ -3,7 +3,7 @@
 import { createAccount } from '@/utils/firebase/auth'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
-import styles from './styles.module.css'
+import styles from '@/styles/app/auth/styles.module.css'
 import { z } from 'zod'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@shadcn/form'
 import { Input } from '@shadcn/input'

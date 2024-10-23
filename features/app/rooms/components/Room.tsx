@@ -54,7 +54,7 @@ export const Room = ({ id, name, description, full, last_edit }: { id: string, n
         <div
             className={`${styles.block} ${full ? styles.full : styles.empty}`}
             onClick={() => handleClick()} >
-            <h3 className={`${styles.title} scroll-m-20 text-2xl font-semibold tracking-tight`}>{name}</h3>
+            <h3 className={`${styles.title}`}>{name}</h3>
             <p>{description}</p>
             {full && <p className={styles.small}>{elapsedTime}</p>}
         </div>
@@ -131,7 +131,7 @@ export const AdminRoom = ({ id, name, description, full, last_edit }: { id: stri
         <div
             className={`${styles.block} ${full ? styles.full : styles.empty} ${styles.admin_block}`}>
             <span className={styles.small}>{id}</span>
-            <h3 className={`${styles.title} scroll-m-20 text-2xl font-semibold tracking-tight`}>{name}</h3>
+            <h3 className={styles.title}>{name}</h3>
             <p>{description}</p>
             {full && <p className={styles.small}>{elapsedTime}</p>}
             <Popover>
