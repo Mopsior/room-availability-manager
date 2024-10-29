@@ -12,13 +12,16 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@shadcn/ca
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 import { handleSignUpError } from '@/utils/firebase/handleAuthError'
-
-const formSchema = z.object({
-    email: z.string().email({ message: 'Niepoprawny adres e-mail' }),
-    password: z.string().min(6, { message: 'Hasło musi mieć co najmniej 6 znaków' })
-})
+import { useTranslations } from 'next-intl'
 
 export default function SignUp() {
+    const t = useTranslations('auth')
+
+    const formSchema = z.object({
+        email: z.string().email({ message: t('form.schemaMessage.email') }),
+        password: z.string().min(6, { message: t('form.schemaMessage.password') })
+    })
+
     const { toast } = useToast()
     const router = useRouter()
 
@@ -30,12 +33,12 @@ export default function SignUp() {
         try {
             await createAccount(values.email, values.password)
         } catch (err: any) {
-            const { title, description, action } = handleSignUpError(err)
+            const { title, description, action } = handleSignUpError(err, t)
             toast({
                 variant: 'destructive',
                 title: title,
                 description: description,
-                action: action ? <Button variant={'outline'} className='bg-transparent' onClick={() => { router.push('/login') }}>Zaloguj się</Button> : undefined
+                action: action ? <Button variant={'outline'} className='bg-transparent' onClick={() => { router.push('/login') }}>{t('login.text')}</Button> : undefined
             })
         }
     }
@@ -44,7 +47,7 @@ export default function SignUp() {
         <div className={styles.container}>
             <Card className={`shadow-lg ${styles.card}`}>
                 <CardHeader>
-                    <CardTitle>Zarejesruj się</CardTitle>
+                    <CardTitle>{t('signin.text')}</CardTitle>
                 </CardHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -54,9 +57,9 @@ export default function SignUp() {
                                         name='email'
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>E-mail</FormLabel>
+                                                <FormLabel>{t('form.email.label')}</FormLabel>
                                                 <FormControl>
-                                                    <Input placeholder='test@example.com' {...field} />
+                                                    <Input placeholder={t('form.email.placeholder')} {...field} />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -67,12 +70,12 @@ export default function SignUp() {
                                         name='password'
                                         render={({ field }) => (
                                             <FormItem className='mt-3'>
-                                                <FormLabel>Hasło</FormLabel>
+                                                <FormLabel>{t('form.password.label')}</FormLabel>
                                                 <FormControl>
-                                                    <Input type='password' {...field} />
+                                                    <Input type={t('form.password.placeholder')} {...field} />
                                                 </FormControl>
                                                 <FormDescription>
-                                                    Hasło musi mieć co najmniej 6 znaków
+                                                    {t('form.password.helperText')}
                                                 </FormDescription>
                                                 <FormMessage />
                                             </FormItem>
@@ -80,7 +83,7 @@ export default function SignUp() {
                                         />
                         </CardContent>
                         <CardFooter>
-                            <Button>Zarejestruj się</Button>
+                            <Button>{t('signin.text')}</Button>
                         </CardFooter>
                     </form>
                 </Form>

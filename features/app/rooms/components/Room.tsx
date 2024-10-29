@@ -8,6 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@shadcn/popover'
 import { Button } from '@shadcn/button'
 import { useToast } from '@/hooks/use-toast'
 import { UpdateDialog } from './UpdateDialog'
+import { useTranslations } from 'next-intl'
 
 /**
  * Room block component
@@ -72,6 +73,8 @@ export const Room = ({ id, name, description, full, last_edit }: { id: string, n
 export const AdminRoom = ({ id, name, description, full, last_edit }: { id: string, name: string, description: string, full: boolean, last_edit: Timestamp }) => {
     const [elapsedTime, setElapsedTime] = useState<string>('')
     const { toast } = useToast()
+    const t = useTranslations('components.AdminRoom')
+    const uniT = useTranslations('universal')
 
     const changeAvailability = async () => {
         setElapsedTime('0:00')
@@ -96,16 +99,16 @@ export const AdminRoom = ({ id, name, description, full, last_edit }: { id: stri
     useEffect(() => {
         if (!full) return
         const intervalId = setInterval(() => {
-             const now = new Date()
-             const parsedDate = new Date(last_edit.toDate())
-             const elapsedInSeconds = Math.floor((now.getTime() - parsedDate.getTime()) / 1000)
- 
-             const hours = Math.floor(elapsedInSeconds / 3600)
-             const minutes = Math.floor((elapsedInSeconds % 3600) / 60)
-             const seconds = elapsedInSeconds % 60
-             if (seconds < 10) return setElapsedTime(`${hours ? `${hours}:` : ''}${minutes}:0${seconds}`)
-             if (minutes < 10) return setElapsedTime(`${hours ? `${hours}:` : ''}0${minutes}:${seconds}`)
-             return setElapsedTime(`${hours ? `${hours}:` : ''}${minutes}:${seconds}`)
+            const now = new Date()
+            const parsedDate = new Date(last_edit.toDate())
+            const elapsedInSeconds = Math.floor((now.getTime() - parsedDate.getTime()) / 1000)
+
+            const hours = Math.floor(elapsedInSeconds / 3600)
+            const minutes = Math.floor((elapsedInSeconds % 3600) / 60)
+            const seconds = elapsedInSeconds % 60
+            if (seconds < 10) return setElapsedTime(`${hours ? `${hours}:` : ''}${minutes}:0${seconds}`)
+            if (minutes < 10) return setElapsedTime(`${hours ? `${hours}:` : ''}0${minutes}:${seconds}`)
+            return setElapsedTime(`${hours ? `${hours}:` : ''}${minutes}:${seconds}`)
         }, 1000)
  
         return () => clearInterval(intervalId)
@@ -115,13 +118,13 @@ export const AdminRoom = ({ id, name, description, full, last_edit }: { id: stri
         try {
             await navigator.clipboard.writeText(id)
             toast({
-                title: 'Skopiowano ID'
+                title: t('copyID.success')
             })
         } catch (err) {
             console.error(err)
             toast({
-                title: "Nie udało się skopiować ID",
-                description: "Sprawdź ustawienia przeglądarki i spróbuj ponownie",
+                title: t('copyID.error'),
+                description: t('copyID.errorDescription'),
                 variant: 'destructive'
             })
         }
@@ -136,14 +139,14 @@ export const AdminRoom = ({ id, name, description, full, last_edit }: { id: stri
             {full && <p className={styles.small}>{elapsedTime}</p>}
             <Popover>
                 <PopoverTrigger asChild>
-                    <Button variant='outline' className={`mt-2 ${styles.button}`}>Opcje</Button>
+                    <Button variant='outline' className={`mt-2 ${styles.button}`}>{uniT('options')}</Button>
                 </PopoverTrigger>
                 <PopoverContent asChild>
                     <div className={styles.content}>
-                        <Button onClick={() => changeAvailability()} variant={'outline'} className='mr-2'>{full ? 'Opuść pokój' : 'Zajmij pokój'}</Button>
-                        <Button onClick={() => copyID()} variant={'outline'} className='ml-2'>Skopiuj ID</Button>
+                        <Button onClick={() => changeAvailability()} variant={'outline'} className='mr-2'>{full ? t('occupation.leave') : t('occupation.enter')}</Button>
+                        <Button onClick={() => copyID()} variant={'outline'} className='ml-2'>{t('copy')}</Button>
                         <UpdateDialog id={id} name={name} description={description} />
-                        <Button onClick={() => deleteRoom()} variant={'destructive'} className='ml-2 mt-2'>Usuń pokój</Button>
+                        <Button onClick={() => deleteRoom()} variant={'destructive'} className='ml-2 mt-2'>{t('delete')}</Button>
                     </div>
                 </PopoverContent>
             </Popover>

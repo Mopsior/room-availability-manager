@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import { db } from "@fb";
 import { Input } from "@shadcn/input";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
     name: z.string().optional(),
@@ -24,6 +25,8 @@ const formSchema = z.object({
 })
 
 export const UpdateDialog = ({ id, name, description }: { id: string, name: string, description: string }) => {
+    const t = useTranslations('components.UpdateDialog')
+    const uniT = useTranslations('universal')
     const { toast } = useToast()
     const [open, setOpen] = useState(false)
 
@@ -43,14 +46,14 @@ export const UpdateDialog = ({ id, name, description }: { id: string, name: stri
             form.reset()
 
             toast({
-                title: 'Pokój został zaktualizowany'
+                title: t('toast.success')
             })
         }
         catch (err) {
             console.error(err)
             toast({
-                title: 'Wystąpił błąd',
-                description: 'Nie udało się zaktualizować pokoju. Zobacz konsolę',
+                title: t('toast.error.title'),
+                description: t('toast.error.description'),
                 variant: 'destructive'
             })
         }
@@ -59,12 +62,12 @@ export const UpdateDialog = ({ id, name, description }: { id: string, name: stri
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant={'outline'} className='mr-2 mt-2'>Edytuj</Button>
+                <Button variant={'outline'} className='mr-2 mt-2'>{uniT('edit')}</Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Edytuj pokój</DialogTitle>
-                    <DialogDescription>Edytuj dane pokoju</DialogDescription>
+                    <DialogTitle>{t('edit')}</DialogTitle>
+                    <DialogDescription>{t('editDescription')}</DialogDescription>
                 </DialogHeader>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -73,9 +76,9 @@ export const UpdateDialog = ({ id, name, description }: { id: string, name: stri
                                 name='name'
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Nazwa pokoju</FormLabel>
+                                        <FormLabel>{t('form.name')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder='ex. 101' defaultValue={name} {...field} />
+                                            <Input placeholder={t('form.namePlaceholder')} defaultValue={name} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -86,16 +89,16 @@ export const UpdateDialog = ({ id, name, description }: { id: string, name: stri
                                 name='description'
                                 render={({ field }) => (
                                     <FormItem className="mt-3">
-                                        <FormLabel>Opis pokoju</FormLabel>
+                                        <FormLabel>{t('form.description')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder='ex. Meeting Room' defaultValue={description} {...field} />
+                                            <Input placeholder={t('descriptionName')} defaultValue={description} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                                 />
                             <DialogFooter className="mt-6">
-                                <Button type="submit">Zapisz</Button>
+                                <Button type="submit">{uniT('save')}</Button>
                             </DialogFooter>
                         </form>
                     </Form>

@@ -5,8 +5,10 @@ import { Separator } from "@shadcn/separator";
 import { AddRoom } from "@/features/app/rooms/components/AddRoom";
 import { SwitchPanels } from "@/features/app/_components/SwitchPanel";
 import { Account } from "@/features/app/_components/Account";
+import { useTranslations } from "next-intl";
 
 export default function AdminPage() {
+    const t = useTranslations('AdminPage')
     return (
         <>
             <div className={styles.navbar}>
@@ -14,8 +16,8 @@ export default function AdminPage() {
                 <Account/>
             </div>
             <div className={styles.title}>
-                <h1>Panel Administracyjny</h1>
-                <p>Aby zarządzać pokojami, rozwiń opcje klikając w przycisk</p>
+                <h1>{t('title')}</h1>
+                <p>{t('description')}</p>
                 <AddRoom />
             </div>
             <Separator className="mb-4 mx-auto w-4/5" />

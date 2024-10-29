@@ -12,13 +12,17 @@ import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 import { handleLoginError } from '@/utils/firebase/handleAuthError'
 import { logIn } from '@/utils/firebase/auth'
+import { useTranslations } from 'next-intl'
 
-const formSchema = z.object({
-    email: z.string().email({ message: 'Niepoprawny adres e-mail' }),
-    password: z.string().min(6, { message: 'Hasło musi mieć co najmniej 6 znaków' })
-})
 
 export default function LogIn() {
+    const t = useTranslations('auth')
+
+    const formSchema = z.object({
+        email: z.string().email({ message: t('form.schemaMessage.email') }),
+        password: z.string()
+    })
+
     const { toast } = useToast()
     const router = useRouter()
 
@@ -30,12 +34,12 @@ export default function LogIn() {
         try {
             await logIn(values.email, values.password)
         } catch (err: any) {
-            const { title, description, action } = handleLoginError(err)
+            const { title, description, action } = handleLoginError(err, t)
             toast({
                 variant: 'destructive',
                 title: title,
                 description: description,
-                action: action ? <Button variant={'outline'} className='bg-transparent' onClick={() => { router.push(action) }}>Zaloguj się</Button> : undefined
+                action: action ? <Button variant={'outline'} className='bg-transparent' onClick={() => { router.push(action) }}>{t('login.text')}</Button> : undefined
             })
         }
     }
@@ -44,7 +48,7 @@ export default function LogIn() {
         <div className={styles.container}>
             <Card className={`shadow-lg ${styles.card}`}>
                 <CardHeader>
-                    <CardTitle>Zaloguj się</CardTitle>
+                    <CardTitle>{t(('login.text'))}</CardTitle>
                 </CardHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -54,9 +58,9 @@ export default function LogIn() {
                                 name='email'
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>E-mail</FormLabel>
+                                        <FormLabel>{t('form.email.label')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder='test@example.com' {...field} />
+                                            <Input placeholder={t('form.email.placeholder')} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -67,9 +71,9 @@ export default function LogIn() {
                                 name='password'
                                 render={({ field }) => (
                                     <FormItem className='mt-3'>
-                                        <FormLabel>Hasło</FormLabel>
+                                        <FormLabel>{t('form.password.label')}</FormLabel>
                                         <FormControl>
-                                            <Input type='password' {...field} />
+                                            <Input type={t('form.password.placeholder')} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -77,7 +81,7 @@ export default function LogIn() {
                                 />
                         </CardContent>
                         <CardFooter>
-                            <Button>Zaloguj się</Button>
+                            <Button>{t('login.text')}</Button>
                         </CardFooter>
                     </form>
                 </Form>
