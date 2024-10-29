@@ -2,9 +2,11 @@
 
 import { useRouter } from "next/navigation"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@shadcn/select"
+import { useTranslations } from "next-intl"
 
 export const SwitchPanels = () => {
     const router = useRouter()
+    const t = useTranslations('components.SwitchPanel')
 
     const handleChange = (value: string) => {
         if (value === 'admin') return router.push('/app/admin')
@@ -14,11 +16,11 @@ export const SwitchPanels = () => {
     return (
         <Select defaultValue="admin" onValueChange={(value) => handleChange(value)}>
             <SelectTrigger className="w-auto">
-                <SelectValue placeholder="Wybierz panel" />
+                <SelectValue placeholder={t('selectPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
-                <SelectItem value="admin">Panel Administracyjny</SelectItem>
-                <SelectItem value="app">Podstawowa Aplikacja</SelectItem>
+                <SelectItem value="admin">{t('adminPanel')}</SelectItem>
+                <SelectItem value="app">{t('userPanel')}</SelectItem>
             </SelectContent>
         </Select>
     )

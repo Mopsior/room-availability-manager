@@ -7,26 +7,26 @@ import { Avatar, AvatarFallback } from "@shadcn/avatar"
 import { getAuth, signOut } from "firebase/auth"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
-import { HTMLAttributes } from "react"
+import { useTranslations } from "next-intl"
 
 const auth = getAuth()
 export const Account = () =>{
+    const t = useTranslations('auth')
     const user = useAuthContext()
     const { toast } = useToast()
     const router = useRouter()
 
     const logOut = async () => {
-        console.log('klik')
         try {
             await signOut(auth)
             toast({
-                title: 'Wylogowano pomyślnie',
+                title: t('signout.success'),
             })
             router.push('/login')
 
         } catch (error) {
             toast({
-                title: 'Błąd podczas wylogowywania',
+                title: t('signout.error'),
                 variant: 'destructive'
             })
         }
@@ -48,7 +48,7 @@ export const Account = () =>{
                 <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => logOut()} className="cursor-pointer">
-                    Wyloguj się
+                    {t('signout.text')}
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

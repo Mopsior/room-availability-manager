@@ -17,6 +17,7 @@ import { Input } from "@shadcn/input"
 import { addDoc, collection } from "firebase/firestore"
 import { db } from "@fb"
 import { useToast } from "@/hooks/use-toast"
+import { useTranslations } from "next-intl"
 
 const formSchema = z.object({
     name: z.string({ message: 'Nazwa pokoju nie może być pusta' }),
@@ -25,6 +26,8 @@ const formSchema = z.object({
 
 export const AddRoom = () => {
     const { toast } = useToast()
+    const t = useTranslations('components.AddRoom')
+    const uniT = useTranslations('universal')
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema)
@@ -42,12 +45,12 @@ export const AddRoom = () => {
             form.reset()
 
             toast({
-                title: 'Pokój został dodany'
+                title: t('toast.success')
             })
         } catch (err) {
             toast({
-                title: 'Wystąpił błąd',
-                description: 'Nie udało się dodać pokoju. Zobacz konsolę',
+                title: t('toast.error.title'),
+                description: t('toast.error.description'),
                 variant: 'destructive'
             })
             console.error(err)
@@ -57,12 +60,12 @@ export const AddRoom = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-               <Button className="mt-4" variant={'outline'}>Dodaj pokój</Button>
+               <Button className="mt-4" variant={'outline'}>{t('dialog.button')}</Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Tworzenie pokoju</DialogTitle>
-                    <DialogDescription>Stwórz nowy pokój, aby użytkownicy mogli go kontrolować</DialogDescription>
+                    <DialogTitle>{t('dialog.title')}</DialogTitle>
+                    <DialogDescription>{t('dialog.description')}</DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -73,9 +76,9 @@ export const AddRoom = () => {
                                 name='name'
                                 render={({ field }) => (
                                     <FormItem className="mt-1">
-                                        <FormLabel>Pokój</FormLabel>
+                                        <FormLabel>{t('form.name.label')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder='ex. 101' {...field} />
+                                            <Input placeholder={t('form.name.placeholder')} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -86,9 +89,9 @@ export const AddRoom = () => {
                                 name='description'
                                 render={({ field }) => (
                                     <FormItem className="mt-4">
-                                        <FormLabel>Opis</FormLabel>
+                                        <FormLabel>{t('form.description.label')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder='Meeting room' {...field} />
+                                            <Input placeholder={t('form.description.placeholder')} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -97,7 +100,7 @@ export const AddRoom = () => {
                             </>
                         </DialogDescription>
                         <DialogClose>
-                            <Button type="submit" className="mt-4">Dodaj</Button>
+                            <Button type="submit" className="mt-4">{uniT('add')}</Button>
                         </DialogClose>
                     </form> 
                 </Form>

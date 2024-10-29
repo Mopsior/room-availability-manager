@@ -1,0 +1,162 @@
+{
+    "universal": {
+        "edit": "Edytuj",
+        "save": "Zapisz",
+        "options": "Opcje",
+        "add": "Dodaj"
+    },
+    "LandingPage": {
+        "title": "Hemlow"
+    },
+    "App": {
+        "placeName": "Elektronik - Dni otwarte",
+        "description": "Kliknij przycisk z numerem sali, aby zmienić jego dostępność",
+        "metadata": {
+            "title": "Elektronik - Dni otwarte",
+            "description": "Zarządzanie dostępu do sal"
+        }
+    },
+    "AdminPage": {
+        "title": "Panel Administracyjny",
+        "description": "Aby zarządzać pokojami, rozwiń opcje klikając w prszycisk",
+        "metadata": {
+            "title": "Panel Administracyjny",
+            "description": "Elektronik - Dni otwarte"
+        }
+    },
+    "LoginPage": {
+        "metadata": {
+            "title": "Logowanie: Elektronik - Dni otwarte",
+            "description": "Panel logowania do systemu zarządzania pokojami"
+        }
+    },
+    "SignupPage": {
+        "metadata": {
+            "title": "Rejestracja: Elektronik - Dni otwarte",
+            "description": "Rejestracja do systemu zarządzania pokojami"
+        }
+    },
+    "auth": {
+        "signout": {
+            "text": "Wyloguj się",
+            "success": "Wylogowano pomyślnie",
+            "error": "Błąd podczas wylogowywania"
+        },
+        "signin": {
+            "text": "Zarejestruj się"
+        },
+        "login": {
+            "text": "Zaloguj się"
+        },
+        "form": {
+            "schemaMessage": {
+                "email": "Niepoprawny adres email",
+                "password": "Hasło musi mieć co najmniej 6 znaków"
+            },
+            "email": {
+                "label": "E-mail",
+                "placeholder": "test@example.com"
+            },
+            "password": {
+                "label": "Hasło",
+                "placeholder": "Password",
+                "helperText": "Hasło musi mieć co najmniej 6 znaków"
+            }
+        },
+        "error": {
+            "logIn": {
+                "invalidCredential": {
+                    "title": "Błąd logowania",
+                    "description": "Niepoprawne dane logowania. Spróbuj ponownie"
+                },
+                "default": {
+                    "title": "Błąd logowania",
+                    "description": "Wystąpił błąd podczas logowania. Upewnij się, że masz konto"
+                }
+            },
+            "signUp": {
+                "emailAlreadyInUse": {
+                    "title": "Błąd rejestracji",
+                    "description": "Konto z podanym adresem e-mail już istnieje. Spróbuj zalogować się na swoje konto"
+                },
+                "invalidEmail": {
+                    "title": "Błąd rejestracji",
+                    "description": "Niepoprawny adres e-mail"
+                },
+                "default": {
+                    "title": "Błąd rejestracji",
+                    "description": "Wystąpił błąd podczas rejestracji. Spróbuj ponownie"
+                }
+            }
+        }
+    },
+    "components": {
+        "SwitchPanel": {
+            "selectPlaceholder": "Wybierz panel",
+            "adminPanel": "Panel Administracyjny",
+            "userPanel": "Panel Użytkownika"
+        },
+        "UpdateDialog": {
+            "toast": {
+                "success": "Pokój został zaaktualizowany",
+                "error": {
+                    "title": "Wystąpił błąd",
+                    "description": "Nie udało się zaktualizować pokoju. Zobacz konsolę"
+                }
+            },
+            "edit": "Edytuj pokój",
+            "editDescription": "Edytuj wybrany pokój",
+            "form": {
+                "name": "Nazwa pokoju",
+                "namePlaceholder": "ex. 101",
+                "description": "Opis pokoju",
+                "descriptionPlaceholder": "ex. Meeting room"
+            }
+        },
+        "AdminRoom": {
+            "copyID": {
+                "success": "Skopiowano ID pokoju",
+                "error": "Nie udało się skopiować ID",
+                "errorDescription": "Sprawdź ustawienia przeglądarki i spróbuj ponownie"
+            },
+            "occupation": {
+                "leave": "Opuść pokój",
+                "enter": "Zajmij pokój"
+            },
+            "copy": "Kopiuj ID",
+            "delete": "Usuń pokój"
+        },
+        "Legend": {
+            "free": "Pokój wolny",
+            "occupied": "Pokój zajęty"
+        },
+        "AddRoom": {
+            "form": {
+                "schemaMessage": {
+                    "name": "Nazwa pokoju nie może być pusta",
+                    "description": "Opis pokoju nie może być pusty"
+                },
+                "name": {
+                    "label": "Pokój",
+                    "placeholder": "ex. 101"
+                },
+                "description": {
+                    "label": "Opis",
+                    "placeholder": "ex. Meeting Room"
+                }
+            },
+            "toast": {
+                "success": "Pokój został dodany",
+                "error": {
+                    "title": "Wystąpił błąd",
+                    "description": "Nie udało się dodać pokoju. Zobacz konsolę"
+                }
+            },
+            "dialog": {
+                "button": "Dodaj pokój",
+                "title": "Tworzenie pokoju",
+                "description": "Stwórz nowy pokój, aby użytkownicy mogli go kontrolować"
+            }
+        }
+    }
+}

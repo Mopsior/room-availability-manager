@@ -4,7 +4,7 @@
     justify-content: center;
     height: 100vh;
     background: rgb(0,0,0);
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(124,58,237,1) 50%, rgba(184,149,245,1) 73%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(90deg, rgba(124,58,237,1) 30%, rgba(124,58,237,0.5) 73%, rgba(255,255,255,1) 100%);
 }
 
 .card {
