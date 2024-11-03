@@ -72,6 +72,24 @@
                 "creationTime": "Data utworzenia",
                 "lastSignInTime": "Ostatnie logowanie",
                 "isAdmin": "Is admin?"
+            },
+            "error": {
+                "title": "Błąd zmieniając status użytkownika",
+                "description": "Zmiany nie zostały wprowadzone. Aby poznać szczęgóły, zobacz konsolę"
+            },
+            "success": {
+                "title": "Zmieniono status użytkownika",
+                "description": "Status użytkownika został zmieniony pomyślnie"
+            }
+        },
+        "config": {
+            "allowRegister": {
+                "title": "Zezwól na rejestrację",
+                "description": "Zezwól użytkownikom na rejestrację w aplikacji"
+            },
+            "disableLandingPage": {
+                "title": "Wyłącz stronę powitalną",
+                "description": "Wyświetlaj stronę powitalną (tzw. landing page)"
             }
         }
     },
@@ -208,6 +226,18 @@
                 "button": "Dodaj pokój",
                 "title": "Tworzenie pokoju",
                 "description": "Stwórz nowy pokój, aby użytkownicy mogli go kontrolować"
+            }
+        },
+        "Control": {
+            "toast": {
+                "success": {
+                    "title": "Ustawienie zostało zapisane",
+                    "description": "Dotyczy ustawienia {settingName}"
+                },
+                "error": {
+                    "title": "Wystąpił błąd",
+                    "description": "Nie udało się zapisać {settingName}. Zobacz konsolę"
+                }
             }
         }
     }

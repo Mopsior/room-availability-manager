@@ -1,0 +1,23 @@
+.control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    border-width: 1px;
+    padding: 16px 30px;
+    font-size: 16px;
+    width: 40%;
+    min-width: 350px;
+}
+
+.control h2 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.control p {
+    color: #71717A;
+    font-size: 14px;
+    line-height: 20px;
+}

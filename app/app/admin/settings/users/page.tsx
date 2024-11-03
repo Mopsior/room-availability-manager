@@ -10,8 +10,7 @@ import { db } from "@/utils/firebase/firebase";
 import { Switch } from "@/components/ui/switch";
 import { useTranslations } from "next-intl";
 import { Loading } from "@/components/loading";
-
-// add loading skeleton
+import { useToast } from "@/hooks/use-toast";
 
 export default function AdminSettingsUsersPage() {
     const [ usersList, setUsersList ] = useState<ListUsersResult | null>(null)
@@ -19,6 +18,7 @@ export default function AdminSettingsUsersPage() {
     const [ loading, setLoading ] = useState(true)
 
     const t = useTranslations('AdminSettingsPage.users')
+    const {toast} = useToast()
 
     const callUsers = async () => {
         setLoading(true)
@@ -42,9 +42,22 @@ export default function AdminSettingsUsersPage() {
     console.log(usersList, adminsList)
 
     const onChange = async ( id: string ) => {
-        await updateDoc(doc(db, 'config', 'roles'), {
-            admin: adminsList?.includes(id) ? arrayRemove(id) : arrayUnion(id)
-        })
+        try {
+            await updateDoc(doc(db, 'config', 'roles'), {
+                admin: adminsList?.includes(id) ? arrayRemove(id) : arrayUnion(id)
+            })
+            toast({
+                title: t('success.title'),
+                description: t('success.description'),
+            })
+        } catch (err) {
+            console.error(err)
+            toast({
+                title: t('error.title'),
+                description: t('error.description'),
+                variant: "destructive"
+            })
+        }
     }
 
     if (loading) return <Loading />

@@ -12,7 +12,7 @@ export default function AdminPage() {
         <>
             <div className={styles.navbar}>
                 <SwitchPanels defaultPanel="admin" haveAdmin />
-                <Account/>
+                <Account haveSettings />
             </div>
             <div className={styles.title}>
                 <h1>{t('title')}</h1>
