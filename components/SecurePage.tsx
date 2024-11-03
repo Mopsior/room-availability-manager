@@ -2,8 +2,9 @@
 import { useAuthContext } from "@/utils/firebase/AuthContext"
 import { useRouter } from "next/navigation"
 import { ReactNode, useEffect, useState } from "react"
+import { Loading } from "./loading"
 
-export const SecurePage = ({ loginPage }: { loginPage?: boolean }) => {
+export const SecurePage = ({ loginPage, children }: { loginPage?: boolean, children: ReactNode }) => {
     const user = useAuthContext()
     console.log(user)
     const router = useRouter()
@@ -18,14 +19,16 @@ export const SecurePage = ({ loginPage }: { loginPage?: boolean }) => {
         } else return setLoading(false)
     }, [user])
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <Loading />
+    else return <>{children}</>
 }
 
 export const SecureLayout = ({ children, loginPage = false }: { children: ReactNode, loginPage?: boolean }) => {
     return (
         <>
-            <SecurePage loginPage={loginPage}/>
-            {children}
+            <SecurePage loginPage={loginPage}>
+                {children}
+            </SecurePage>
         </>
     )
 }

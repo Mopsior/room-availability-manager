@@ -5,6 +5,7 @@ import { useAuthContext } from "@/utils/firebase/AuthContext"
 import { doc, getDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { ReactNode, useEffect, useState } from "react"
+import { Loading } from "./loading"
 
 export const AdminVerify = ({ children }: { children: ReactNode}) => {
     const [loading, setLoading] = useState<boolean>(true)
@@ -33,7 +34,7 @@ export const AdminVerify = ({ children }: { children: ReactNode}) => {
 
     return (
         <>
-            {loading ? <h1>Loading</h1> : children}
+            {loading ? <Loading /> : children}
         </>
     )
 }

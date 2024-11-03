@@ -91,7 +91,7 @@ export const UpdateDialog = ({ id, name, description }: { id: string, name: stri
                                     <FormItem className="mt-3">
                                         <FormLabel>{t('form.description')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder={t('descriptionName')} defaultValue={description} {...field} />
+                                            <Input placeholder={t('form.descriptionPlaceholder')} defaultValue={description} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

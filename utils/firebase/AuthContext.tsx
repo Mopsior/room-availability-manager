@@ -1,5 +1,6 @@
 'use client'
 
+import { Loading } from "@/components/loading";
 import app from "@fb";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -26,7 +27,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
     return (
         <AuthContext.Provider value={user}>
-            { loading ? <h1>Loading...</h1> : children }
+            { loading ? <Loading /> : children }
         </AuthContext.Provider>
     )
 }
