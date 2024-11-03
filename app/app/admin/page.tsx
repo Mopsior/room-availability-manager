@@ -1,4 +1,3 @@
-import { Legend } from "@/features/app/rooms/components/Legend";
 import { RoomList } from "@/features/app/rooms/components/List";
 import styles from '@/styles/app/styles.module.css'
 import { Separator } from "@shadcn/separator";
@@ -24,7 +23,6 @@ export default function AdminPage() {
             <div className={styles.list}>
                 <RoomList asAdmin />
             </div>
-            <Legend />
         </>
     )
 }

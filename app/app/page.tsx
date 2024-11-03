@@ -2,7 +2,6 @@
 
 import { RoomList } from "@/features/app/rooms/components/List"
 import styles from '@/styles/app/styles.module.css'
-import { Legend } from "@/features/app/rooms/components/Legend"
 import { Separator } from "@/components/ui/separator"
 import { Account } from "@/features/app/_components/Account"
 import { useTranslations } from "next-intl"
@@ -22,7 +21,6 @@ export default function AppHome() {
             <div className={styles.list}>
                 <RoomList />
             </div>
-            <Legend />
         </>
     )
 }

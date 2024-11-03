@@ -1,4 +1,5 @@
 import { SecureLayout } from "@/components/SecurePage";
+import { Legend } from "@/features/app/rooms/components/Legend";
 import { Providers } from "@/utils/Providers";
 import { getTranslations } from "next-intl/server";
 
@@ -20,6 +21,7 @@ export default function AppLayout({
         <Providers>
             <SecureLayout>
                 {children}
+                <Legend />
             </SecureLayout>
         </Providers>
     );
