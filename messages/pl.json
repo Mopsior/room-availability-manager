@@ -3,7 +3,8 @@
         "edit": "Edytuj",
         "save": "Zapisz",
         "options": "Opcje",
-        "add": "Dodaj"
+        "add": "Dodaj",
+        "settings": "Ustawienia"
     },
     "buttons": {
         "appReferal": "Przejdź do aplikacji",
@@ -54,6 +55,24 @@
         "metadata": {
             "title": "Panel Administracyjny",
             "description": "Elektronik - Dni otwarte"
+        }
+    },
+    "AdminSettingsPage": {
+        "title": "Ustawienia",
+        "description": "Zmień ustawienia aplikacji",
+        "text": "Wybierz opcję z menu",
+        "tabs": {
+            "users": "Użytkownicy",
+            "config": "Konfiguracja"
+        },
+        "users": {
+            "table": {
+                "email": "E-mail",
+                "uid": "UID",
+                "creationTime": "Data utworzenia",
+                "lastSignInTime": "Ostatnie logowanie",
+                "isAdmin": "Is admin?"
+            }
         }
     },
     "LoginPage": {
@@ -126,7 +145,8 @@
         "SwitchPanel": {
             "selectPlaceholder": "Wybierz panel",
             "adminPanel": "Panel Administracyjny",
-            "userPanel": "Panel Użytkownika"
+            "userPanel": "Panel Użytkownika",
+            "settingsPanel": "Ustawienia"
         },
         "UpdateDialog": {
             "toast": {

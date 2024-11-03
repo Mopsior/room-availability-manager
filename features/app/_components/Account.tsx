@@ -8,10 +8,12 @@ import { getAuth, signOut } from "firebase/auth"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
+import Link from "next/link"
 
 const auth = getAuth()
-export const Account = () =>{
+export const Account = ({ haveSettings }: { haveSettings?: boolean }) =>{
     const t = useTranslations('auth')
+    const uniT = useTranslations('universal')
     const user = useAuthContext()
     const { toast } = useToast()
     const router = useRouter()
@@ -50,6 +52,13 @@ export const Account = () =>{
                 <DropdownMenuItem onClick={() => logOut()} className="cursor-pointer">
                     {t('signout.text')}
                 </DropdownMenuItem>
+                { haveSettings && (
+                <Link href="/app/admin/settings">
+                    <DropdownMenuItem className="cursor-pointer">
+                        {uniT('settings')}
+                    </DropdownMenuItem>
+                </Link>
+                )}
             </DropdownMenuContent>
         </DropdownMenu>
     )
