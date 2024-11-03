@@ -5,8 +5,40 @@
         "options": "Opcje",
         "add": "Dodaj"
     },
+    "buttons": {
+        "appReferal": "Przejdź do aplikacji",
+        "githubRepo": "Repozytorium GitHub"
+    },
     "LandingPage": {
-        "title": "Hemlow"
+        "hero": {
+            "title": "Jedyna apka, którą potrzebujesz do zarządzania pokojami.",
+            "example": "Kliknij i przetestuj jak działa",
+            "exampleRoom": {
+                "name": "101",
+                "description": "Meeting room"
+            }
+        },
+        "features": {
+            "first": {
+                "title": "Szybka konfiguracja",
+                "description": "Gotowa do postawienia w kilka minut - bez zbędnych komplikacji"
+            },
+            "second": {
+                "title": "Prosta w obsłudze",
+                "description": "Kontrola sali jest prosta jak <b>jedno kliknięcie</b>. Dosłownie! Spróbuj przykładu na górze"
+            },
+            "third": {
+                "title": "Łatwa do konfiguracji",
+                "description": "Projekt jest <b>open source</b> i zrobiony, aby jak najłtawiej zmienić jego treść oraz wygląd"
+            }
+        },
+        "redirects": {
+            "title": "Do zobaczenia po drugiej stronie!"
+        },
+        "metadata": {
+            "title": "Room Availability Manager",
+            "description": "Jedyna apka, którą potrzebujesz do zarządzania pokojami - Made by @mopsior"
+        }
     },
     "App": {
         "placeName": "Elektronik - Dni otwarte",

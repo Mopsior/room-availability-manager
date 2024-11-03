@@ -1,0 +1,64 @@
+.navbar {
+    color: #050505;
+    padding: 15px 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    backdrop-filter: blur(20px);
+    background-color: #fff9;
+    position: fixed;
+    top: 0;
+    z-index: 15;
+    width: 99%;
+}
+
+.title {
+    font-size: 26px;
+    line-height: 1; 
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    align-content: center;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    gap: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: unset;
+        background-color: white;
+        border-radius: 15px 15px 0 0;
+        border: 1px solid hsl(220 13% 91%);
+        bottom: 0;
+        top: auto;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    .title {
+        font-size: 20px;
+        background-color: #fff;
+        width: fit-content;
+        padding: 10px 15px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        border-radius: 15px;
+        border: 1px solid hsl(220 13% 91%);
+    }
+    .box {
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .github {
+        background-color: hsl(220 14.3% 95.9%);
+        border-radius: 15px;
+        width: min-content;
+        margin-top: 10px;
+    }
+}

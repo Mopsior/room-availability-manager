@@ -55,7 +55,7 @@ export const Room = ({ id, name, description, full, last_edit }: { id: string, n
         <div
             className={`${styles.block} ${full ? styles.full : styles.empty}`}
             onClick={() => handleClick()} >
-            <h3 className={`${styles.title}`}>{name}</h3>
+            <h3 className={styles.title}>{name}</h3>
             <p>{description}</p>
             {full && <p className={styles.small}>{elapsedTime}</p>}
         </div>

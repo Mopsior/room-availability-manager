@@ -1,20 +1,18 @@
 .block {
-    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 200px;
+    height: 130px;
     padding: 20px;
     border: 5px solid;
     border-radius: 15px;
-    cursor: pointer;
     overflow-wrap: break-word;
     text-align: center;
     margin: 5px;
     box-shadow: 8px 8px 15px -10px rgba(66, 68, 90, 0.75);
     transition: .15s ease-in-out;
-}
-
-.admin_block {
-    position: relative;
-    height: 230px;
-    width: 200px;
+    cursor: pointer;
 }
 
 .empty {
@@ -34,22 +32,6 @@
 .small {
     color: rgb(115 115 115);
     font-size: 15px;
-}
-
-.content {
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-
-.button {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    text-align: center;
-    bottom: 20px;
-    width: min-content;
 }
 
 .title {
