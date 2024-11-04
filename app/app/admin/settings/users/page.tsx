@@ -39,8 +39,6 @@ export default function AdminSettingsUsersPage() {
         return () => {console.log('unsubscribed'); unsub()}
     }, [])
 
-    console.log(usersList, adminsList)
-
     const onChange = async ( id: string ) => {
         try {
             await updateDoc(doc(db, 'config', 'roles'), {
