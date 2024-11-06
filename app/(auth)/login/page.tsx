@@ -11,7 +11,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@shadcn/ca
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 import { handleLoginError } from '@/utils/firebase/handleAuthError'
-import { logIn } from '@/utils/firebase/auth'
+import { logIn } from '@/utils/firebase/auth-client'
 import { useTranslations } from 'next-intl'
 
 

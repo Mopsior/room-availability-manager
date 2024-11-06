@@ -112,7 +112,11 @@
             "error": "Błąd podczas wylogowywania"
         },
         "signin": {
-            "text": "Zarejestruj się"
+            "text": "Zarejestruj się",
+            "disabled": {
+                "title": "Rejestracja wyłączona",
+                "description": "Rejestracja jest wyłączona przez administratora. Skontaktuj się z administratorem, aby uzyskać więcej informacji"
+            }
         },
         "login": {
             "text": "Zaloguj się"
@@ -120,7 +124,14 @@
         "form": {
             "schemaMessage": {
                 "email": "Niepoprawny adres email",
-                "password": "Hasło musi mieć co najmniej 6 znaków"
+                "password": {
+                    "min": "Hasło musi mieć co najmniej 6 znaków",
+                    "max": "Hasło nie może mieć więcej niż 4096 znaków",
+                    "lowerCase": "Hasło musi zawierać co najmniej jedną małą literę",
+                    "upperCase": "Hasło musi zawierać co najmniej jedną dużą literę",
+                    "number": "Hasło musi zawierać co najmniej jedną cyfrę",
+                    "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
+                }
             },
             "email": {
                 "label": "E-mail",
@@ -129,7 +140,7 @@
             "password": {
                 "label": "Hasło",
                 "placeholder": "Password",
-                "helperText": "Hasło musi mieć co najmniej 6 znaków"
+                "helperText": "Hasło musi mieć co najmniej 6 znaków (w tym co najmniej 1 małą i 1 dużą), 1 liczbę i 1 znak specjalny"
             }
         },
         "error": {
@@ -160,6 +171,9 @@
         }
     },
     "components": {
+        "correct-signup-popup": {
+            "label": "Zarejestrowano pomyślnie!"
+        },
         "SwitchPanel": {
             "selectPlaceholder": "Wybierz panel",
             "adminPanel": "Panel Administracyjny",

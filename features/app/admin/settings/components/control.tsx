@@ -4,6 +4,7 @@ import styles from '@/styles/app/admin/settings/components/control.module.css'
 import { db } from '@/utils/firebase/firebase'
 import { doc, updateDoc } from 'firebase/firestore'
 import { useTranslations } from 'next-intl'
+import { revalidate } from '../actions/revalidate'
 
 export const Control = ({ title, children, fieldName, isChecked }: { title: string, children: string, fieldName: string, isChecked: boolean }) => {
     const t = useTranslations('components.Control')
@@ -17,6 +18,7 @@ export const Control = ({ title, children, fieldName, isChecked }: { title: stri
                 title: t('toast.success.title'),
                 description: t('toast.success.description', { settingName: fieldName}),
             })
+        if (fieldName === 'disableLandingPage') revalidate('/')
         } catch (err) {
             console.error(err)
             toast({
