@@ -92,7 +92,7 @@ export default function AdminSettingsUsersPage() {
             <div className="text-center">
                 <Button variant="secondary" onClick={() => reload()} disabled={reloading}>
                     {!reloading
-                    ?   <> Odśwież<RotateCcw /></>
+                    ?   <>{t('reload')}<RotateCcw /></>
                     :    <Loading />
                     }
                 </Button>
@@ -120,7 +120,7 @@ export default function AdminSettingsUsersPage() {
                             <TableCell>{user.metadata.creationTime}</TableCell>
                             <TableCell>{user.metadata.lastSignInTime}</TableCell>
                             <TableCell><Switch checked={adminsList?.includes(user.uid)} onCheckedChange={() => onChange(user.uid)} /></TableCell>
-                            <TableCell><Button onClick={() => handleDelete(user.uid)}>Usuń</Button></TableCell>
+                            <TableCell><Button onClick={() => handleDelete(user.uid)}>{t('table.delete')}</Button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

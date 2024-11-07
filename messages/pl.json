@@ -66,6 +66,7 @@
             "config": "Konfiguracja"
         },
         "users": {
+            "reload": "Odśwież",
             "table": {
                 "email": "E-mail",
                 "uid": "UID",
