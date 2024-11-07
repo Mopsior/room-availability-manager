@@ -1,22 +1,29 @@
-'use client'
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { TableCell, TableRow } from "@/components/ui/table";
+import { changeAdminStatus } from "../actions/change-admin-status";
+import { useToast } from "@/hooks/use-toast";
+import { useTranslations } from "next-intl";
+import { UserRecord } from "firebase-admin/auth";
 
-import { Switch } from "@/components/ui/switch"
-import { TableCell, TableRow } from "@/components/ui/table"
-import { db } from "@/utils/firebase/firebase"
-import { UserRecord } from "firebase-admin/auth"
-import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore"
-import { useEffect, useState } from "react"
+export const UserRow = ({ user, adminsList, onDelete }: { user: UserRecord, adminsList: string[] | null, onDelete: any }) => {
+    const { toast } = useToast()
+    const t = useTranslations('AdminSettingsPage.users')
 
-export const UserRow = ({ user, adminsList }: { user: UserRecord, adminsList: Array<string> | null }) => {
-    const [isAdmin, setIsAdmin] = useState(false)
+    const onChange = async (id: string) => {
+        const {error} = await changeAdminStatus(id, adminsList)
+        if (error) {
+            console.error(error)
+            toast({
+                title: t('error.status.title'),
+                description: t('error.status.description'),
+                variant: "destructive"
+            })
+        }
 
-    useEffect(() => {
-        if (adminsList?.includes(user.uid)) setIsAdmin(true)
-    }, [adminsList])
-
-    const onChange = async () => {
-        await updateDoc(doc(db, 'config', 'roles'), {
-            admin: isAdmin ? arrayRemove(user.uid) : arrayUnion(user.uid)
+        toast({
+            title: t('success.status.title'),
+            description: t('success.status.description'),
         })
     }
 
@@ -26,7 +33,11 @@ export const UserRow = ({ user, adminsList }: { user: UserRecord, adminsList: Ar
             <TableCell>{user.uid}</TableCell>
             <TableCell>{user.metadata.creationTime}</TableCell>
             <TableCell>{user.metadata.lastSignInTime}</TableCell>
-            <TableCell><Switch checked={isAdmin} onCheckedChange={() => onChange()} /></TableCell>
+            <TableCell><Switch 
+                checked={adminsList?.includes(user.uid)}
+                onCheckedChange={() => onChange(user.uid)}
+            /></TableCell>
+            <TableCell><Button onClick={() => onDelete(user.uid)}>{t('table.delete')}</Button></TableCell>
         </TableRow>
     )
 }

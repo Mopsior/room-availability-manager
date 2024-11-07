@@ -7,7 +7,6 @@ import { getAllUsers } from "@/features/app/admin/settings/actions/getAllUsers";
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/utils/firebase/firebase";
-import { Switch } from "@/components/ui/switch";
 import { useTranslations } from "next-intl";
 import { Loading } from "@/components/loading";
 import { useToast } from "@/hooks/use-toast";
@@ -15,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { deleteUser } from "@/features/app/admin/settings/actions/delete-user";
 import { changeAdminStatus } from "@/features/app/admin/settings/actions/change-admin-status";
 import { RotateCcw } from "lucide-react";
+import { UserRow } from "@/features/app/admin/settings/components/user-row";
 
 export default function AdminSettingsUsersPage() {
     const [ usersList, setUsersList ] = useState<ListUsersResult | null>(null)
@@ -43,23 +43,6 @@ export default function AdminSettingsUsersPage() {
 
         return () => {console.log('unsubscribed'); unsub()}
     }, [])
-
-    const onChange = async (id: string) => {
-        const {error} = await changeAdminStatus(id, adminsList)
-        if (error) {
-            console.error(error)
-            toast({
-                title: t('error.status.title'),
-                description: t('error.status.description'),
-                variant: "destructive"
-            })
-        }
-
-        toast({
-            title: t('success.status.title'),
-            description: t('success.status.description'),
-        })
-    }
 
     const reload = async () => {
         setReloading(true)
@@ -110,18 +93,8 @@ export default function AdminSettingsUsersPage() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {/* TODO: move to separate component */}
-                    {/* only button need callUsers(), so make it as a prop onClick and
-                        add it in component (as onClick={() => onClick}) or smth */}
                     {usersList?.users.map((user: UserRecord) => (
-                        <TableRow key={user.uid}>
-                            <TableCell>{user.email}</TableCell>
-                            <TableCell>{user.uid}</TableCell>
-                            <TableCell>{user.metadata.creationTime}</TableCell>
-                            <TableCell>{user.metadata.lastSignInTime}</TableCell>
-                            <TableCell><Switch checked={adminsList?.includes(user.uid)} onCheckedChange={() => onChange(user.uid)} /></TableCell>
-                            <TableCell><Button onClick={() => handleDelete(user.uid)}>{t('table.delete')}</Button></TableCell>
-                        </TableRow>
+                        <UserRow key={user.uid} user={user} adminsList={adminsList} onDelete={handleDelete} />
                     ))}
                 </TableBody>
             </Table>
