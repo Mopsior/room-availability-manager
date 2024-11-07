@@ -71,15 +71,28 @@
                 "uid": "UID",
                 "creationTime": "Data utworzenia",
                 "lastSignInTime": "Ostatnie logowanie",
-                "isAdmin": "Is admin?"
+                "isAdmin": "Is admin?",
+                "delete": "Usuń"
             },
             "error": {
-                "title": "Błąd zmieniając status użytkownika",
-                "description": "Zmiany nie zostały wprowadzone. Aby poznać szczęgóły, zobacz konsolę"
+                "status": {
+                    "title": "Błąd zmieniając status użytkownika",
+                    "description": "Zmiany nie zostały wprowadzone. Aby poznać szczęgóły, zobacz konsolę"
+                },
+                "delete": {
+                    "title": "Błąd usuwając użytkownika",
+                    "description": "Użytkownik nie został usunięty. Aby poznać szczęgóły, zobacz konsolę"
+                }
             },
             "success": {
-                "title": "Zmieniono status użytkownika",
-                "description": "Status użytkownika został zmieniony pomyślnie"
+                "status": {
+                    "title": "Zmieniono status użytkownika",
+                    "description": "Status użytkownika został zmieniony pomyślnie"
+                },
+                "delete": {
+                    "title": "Usunięto użytkownika",
+                    "description": "Użytkownik został usunięty pomyślnie"
+                }
             }
         },
         "config": {

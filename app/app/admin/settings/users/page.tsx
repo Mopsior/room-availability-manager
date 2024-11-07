@@ -11,6 +11,9 @@ import { Switch } from "@/components/ui/switch";
 import { useTranslations } from "next-intl";
 import { Loading } from "@/components/loading";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { deleteUser } from "@/features/app/admin/settings/actions/delete-user";
+import { changeAdminStatus } from "@/features/app/admin/settings/actions/change-admin-status";
 
 export default function AdminSettingsUsersPage() {
     const [ usersList, setUsersList ] = useState<ListUsersResult | null>(null)
@@ -39,23 +42,41 @@ export default function AdminSettingsUsersPage() {
         return () => {console.log('unsubscribed'); unsub()}
     }, [])
 
-    const onChange = async ( id: string ) => {
-        try {
-            await updateDoc(doc(db, 'config', 'roles'), {
-                admin: adminsList?.includes(id) ? arrayRemove(id) : arrayUnion(id)
-            })
+    const onChange = async (id: string) => {
+        const {error} = await changeAdminStatus(id, adminsList)
+        if (error) {
+            console.error(error)
             toast({
-                title: t('success.title'),
-                description: t('success.description'),
-            })
-        } catch (err) {
-            console.error(err)
-            toast({
-                title: t('error.title'),
-                description: t('error.description'),
+                title: t('error.status.title'),
+                description: t('error.status.description'),
                 variant: "destructive"
             })
         }
+
+        toast({
+            title: t('success.status.title'),
+            description: t('success.status.description'),
+        })
+    }
+
+    const handleDelete = async (id: string) => {
+        const { error} = await deleteUser(id)
+        if (error) return (
+            toast({
+                title: t('error.delete.title'),
+                description: t('error.delete.description'),
+                variant: "destructive"
+            })
+        )
+
+        if (adminsList?.includes(id)) {
+            await changeAdminStatus(id, adminsList, true)
+        }
+        callUsers()
+        toast({
+            title: t('success.delete.title'),
+            description: t('success.delete.description'),
+        })
     }
 
     if (loading) return <Loading />
@@ -70,9 +91,13 @@ export default function AdminSettingsUsersPage() {
                         <TableHead>{t('table.creationTime')}</TableHead>
                         <TableHead>{t('table.lastSignInTime')}</TableHead>
                         <TableHead>{t('table.isAdmin')}</TableHead>
+                        <TableHead>{t('table.delete')}</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
+                    {/* TODO: move to separate component */}
+                    {/* only button need callUsers(), so make it as a prop onClick and
+                        add it in component (as onClick={() => onClick}) or smth */}
                     {usersList?.users.map((user: UserRecord) => (
                         <TableRow key={user.uid}>
                             <TableCell>{user.email}</TableCell>
@@ -80,6 +105,7 @@ export default function AdminSettingsUsersPage() {
                             <TableCell>{user.metadata.creationTime}</TableCell>
                             <TableCell>{user.metadata.lastSignInTime}</TableCell>
                             <TableCell><Switch checked={adminsList?.includes(user.uid)} onCheckedChange={() => onChange(user.uid)} /></TableCell>
+                            <TableCell><Button onClick={() => handleDelete(user.uid)}>Usuń</Button></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
