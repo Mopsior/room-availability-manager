@@ -12,7 +12,7 @@ export const AppRedirect = ({ isPrimary }: { isPrimary?: boolean}) => {
     const t = useTranslations('buttons')
 
     return (
-        <Link href='/app'>
+        <Link href='/login'>
             <Button variant={isPrimary ? 'default' : 'outline'} className={styles.button}>
                 <p>{t('appReferal')}</p>
                 <SquareArrowOutUpRight />
