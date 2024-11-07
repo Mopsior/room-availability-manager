@@ -1,6 +1,6 @@
 'use client'
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ListUsersResult, UserRecord } from "firebase-admin/auth";
 import styles from '@/styles/app/admin/settings/settings.module.css'
 import { getAllUsers } from "@/features/app/admin/settings/actions/getAllUsers";
