@@ -3,7 +3,8 @@
         "edit": "Edytuj",
         "save": "Zapisz",
         "options": "Opcje",
-        "add": "Dodaj"
+        "add": "Dodaj",
+        "settings": "Ustawienia"
     },
     "buttons": {
         "appReferal": "Przejdź do aplikacji",
@@ -56,6 +57,56 @@
             "description": "Elektronik - Dni otwarte"
         }
     },
+    "AdminSettingsPage": {
+        "title": "Ustawienia",
+        "description": "Zmień ustawienia aplikacji",
+        "text": "Wybierz opcję z menu",
+        "tabs": {
+            "users": "Użytkownicy",
+            "config": "Konfiguracja"
+        },
+        "users": {
+            "reload": "Odśwież",
+            "table": {
+                "email": "E-mail",
+                "uid": "UID",
+                "creationTime": "Data utworzenia",
+                "lastSignInTime": "Ostatnie logowanie",
+                "isAdmin": "Is admin?",
+                "delete": "Usuń"
+            },
+            "error": {
+                "status": {
+                    "title": "Błąd zmieniając status użytkownika",
+                    "description": "Zmiany nie zostały wprowadzone. Aby poznać szczęgóły, zobacz konsolę"
+                },
+                "delete": {
+                    "title": "Błąd usuwając użytkownika",
+                    "description": "Użytkownik nie został usunięty. Aby poznać szczęgóły, zobacz konsolę"
+                }
+            },
+            "success": {
+                "status": {
+                    "title": "Zmieniono status użytkownika",
+                    "description": "Status użytkownika został zmieniony pomyślnie"
+                },
+                "delete": {
+                    "title": "Usunięto użytkownika",
+                    "description": "Użytkownik został usunięty pomyślnie"
+                }
+            }
+        },
+        "config": {
+            "allowRegister": {
+                "title": "Zezwól na rejestrację",
+                "description": "Zezwól użytkownikom na rejestrację w aplikacji"
+            },
+            "disableLandingPage": {
+                "title": "Wyłącz stronę powitalną",
+                "description": "Wyświetlaj stronę powitalną (tzw. landing page)"
+            }
+        }
+    },
     "LoginPage": {
         "metadata": {
             "title": "Logowanie: Elektronik - Dni otwarte",
@@ -75,7 +126,11 @@
             "error": "Błąd podczas wylogowywania"
         },
         "signin": {
-            "text": "Zarejestruj się"
+            "text": "Zarejestruj się",
+            "disabled": {
+                "title": "Rejestracja wyłączona",
+                "description": "Rejestracja jest wyłączona przez administratora. Skontaktuj się z administratorem, aby uzyskać więcej informacji"
+            }
         },
         "login": {
             "text": "Zaloguj się"
@@ -83,7 +138,14 @@
         "form": {
             "schemaMessage": {
                 "email": "Niepoprawny adres email",
-                "password": "Hasło musi mieć co najmniej 6 znaków"
+                "password": {
+                    "min": "Hasło musi mieć co najmniej 6 znaków",
+                    "max": "Hasło nie może mieć więcej niż 4096 znaków",
+                    "lowerCase": "Hasło musi zawierać co najmniej jedną małą literę",
+                    "upperCase": "Hasło musi zawierać co najmniej jedną dużą literę",
+                    "number": "Hasło musi zawierać co najmniej jedną cyfrę",
+                    "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
+                }
             },
             "email": {
                 "label": "E-mail",
@@ -92,7 +154,7 @@
             "password": {
                 "label": "Hasło",
                 "placeholder": "Password",
-                "helperText": "Hasło musi mieć co najmniej 6 znaków"
+                "helperText": "Hasło musi mieć co najmniej 6 znaków (w tym co najmniej 1 małą i 1 dużą), 1 liczbę i 1 znak specjalny"
             }
         },
         "error": {
@@ -123,10 +185,14 @@
         }
     },
     "components": {
+        "correct-signup-popup": {
+            "label": "Zarejestrowano pomyślnie!"
+        },
         "SwitchPanel": {
             "selectPlaceholder": "Wybierz panel",
             "adminPanel": "Panel Administracyjny",
-            "userPanel": "Panel Użytkownika"
+            "userPanel": "Panel Użytkownika",
+            "settingsPanel": "Ustawienia"
         },
         "UpdateDialog": {
             "toast": {
@@ -188,6 +254,18 @@
                 "button": "Dodaj pokój",
                 "title": "Tworzenie pokoju",
                 "description": "Stwórz nowy pokój, aby użytkownicy mogli go kontrolować"
+            }
+        },
+        "Control": {
+            "toast": {
+                "success": {
+                    "title": "Ustawienie zostało zapisane",
+                    "description": "Dotyczy ustawienia {settingName}"
+                },
+                "error": {
+                    "title": "Wystąpił błąd",
+                    "description": "Nie udało się zapisać {settingName}. Zobacz konsolę"
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ export async function generateMetadata() {
     }
 }
 
-export default function AppLayout({
+export default function AdminLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

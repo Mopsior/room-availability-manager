@@ -2,17 +2,17 @@ import { RoomList } from "@/features/app/rooms/components/List";
 import styles from '@/styles/app/styles.module.css'
 import { Separator } from "@shadcn/separator";
 import { AddRoom } from "@/features/app/rooms/components/AddRoom";
+import { useTranslations } from "next-intl";
 import { SwitchPanels } from "@/features/app/_components/SwitchPanel";
 import { Account } from "@/features/app/_components/Account";
-import { useTranslations } from "next-intl";
 
 export default function AdminPage() {
     const t = useTranslations('AdminPage')
     return (
         <>
             <div className={styles.navbar}>
-                <SwitchPanels />
-                <Account/>
+                <SwitchPanels defaultPanel="admin" haveAdmin />
+                <Account haveSettings />
             </div>
             <div className={styles.title}>
                 <h1>{t('title')}</h1>

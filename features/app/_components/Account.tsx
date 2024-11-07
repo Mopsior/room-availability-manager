@@ -8,10 +8,13 @@ import { getAuth, signOut } from "firebase/auth"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
+import Link from "next/link"
+import { LogOut, Settings } from "lucide-react"
 
 const auth = getAuth()
-export const Account = () =>{
+export const Account = ({ haveSettings }: { haveSettings?: boolean }) =>{
     const t = useTranslations('auth')
+    const uniT = useTranslations('universal')
     const user = useAuthContext()
     const { toast } = useToast()
     const router = useRouter()
@@ -48,8 +51,17 @@ export const Account = () =>{
                 <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => logOut()} className="cursor-pointer">
+                    <LogOut />
                     {t('signout.text')}
                 </DropdownMenuItem>
+                { haveSettings && (
+                <Link href="/app/admin/settings">
+                    <DropdownMenuItem className="cursor-pointer">
+                        <Settings />
+                        {uniT('settings')}
+                    </DropdownMenuItem>
+                </Link>
+                )}
             </DropdownMenuContent>
         </DropdownMenu>
     )
