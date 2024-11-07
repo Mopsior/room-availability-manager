@@ -5,7 +5,7 @@ import { ListUsersResult, UserRecord } from "firebase-admin/auth";
 import styles from '@/styles/app/admin/settings/settings.module.css'
 import { getAllUsers } from "@/features/app/admin/settings/actions/getAllUsers";
 import { useEffect, useState } from "react";
-import { arrayRemove, arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/utils/firebase/firebase";
 import { Switch } from "@/components/ui/switch";
 import { useTranslations } from "next-intl";
@@ -14,11 +14,13 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { deleteUser } from "@/features/app/admin/settings/actions/delete-user";
 import { changeAdminStatus } from "@/features/app/admin/settings/actions/change-admin-status";
+import { RotateCcw } from "lucide-react";
 
 export default function AdminSettingsUsersPage() {
     const [ usersList, setUsersList ] = useState<ListUsersResult | null>(null)
     const [ adminsList, setAdminsList ] = useState<string[] | null>(null)
     const [ loading, setLoading ] = useState(true)
+    const [ reloading, setReloading ] = useState(false)
 
     const t = useTranslations('AdminSettingsPage.users')
     const {toast} = useToast()
@@ -59,6 +61,12 @@ export default function AdminSettingsUsersPage() {
         })
     }
 
+    const reload = async () => {
+        setReloading(true)
+        await callUsers()
+        setReloading(false)
+    }
+
     const handleDelete = async (id: string) => {
         const { error} = await deleteUser(id)
         if (error) return (
@@ -72,18 +80,25 @@ export default function AdminSettingsUsersPage() {
         if (adminsList?.includes(id)) {
             await changeAdminStatus(id, adminsList, true)
         }
-        callUsers()
+        await callUsers()
         toast({
             title: t('success.delete.title'),
             description: t('success.delete.description'),
         })
     }
 
-    if (loading) return <Loading />
-
     return (
         <div className={styles.container}>
-            <Table>
+            <div className="text-center">
+                <Button variant="secondary" onClick={() => reload()} disabled={reloading}>
+                    {!reloading
+                    ?   <> Odśwież<RotateCcw /></>
+                    :    <Loading />
+                    }
+                </Button>
+            </div>
+            { !loading ? (
+            <Table className="mt-2">
                 <TableHeader>
                     <TableRow>
                         <TableHead>{t('table.email')}</TableHead>
@@ -110,6 +125,8 @@ export default function AdminSettingsUsersPage() {
                     ))}
                 </TableBody>
             </Table>
+            )
+            : <Loading />}
         </div>
     )
 }
