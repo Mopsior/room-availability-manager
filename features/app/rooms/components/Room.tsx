@@ -6,9 +6,10 @@ import { db } from '@/utils/firebase/firebase'
 import { useEffect, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@shadcn/popover'
 import { Button } from '@shadcn/button'
-import { useToast } from '@/hooks/use-toast'
+import { toast, useToast } from '@/hooks/use-toast'
 import { UpdateDialog } from './UpdateDialog'
 import { useTranslations } from 'next-intl'
+import { catchError } from '@/utils/catch-error'
 
 /**
  * Room block component
@@ -20,16 +21,22 @@ import { useTranslations } from 'next-intl'
  */
 export const Room = ({ id, name, description, full, last_edit }: { id: string, name: string, description: string, full: boolean, last_edit: Timestamp }) => {
     const [elapsedTime, setElapsedTime] = useState<string>('')
+    const t = useTranslations('components.Room')
 
     const handleClick = async () => {
         setElapsedTime('0:00')
-        try {
-            await updateDoc(doc(db, 'rooms', id), {
-                full: !full,
-                last_edit: new Date()
+        const [error] = await catchError(updateDoc(doc(db, 'rooms', id), {
+            full: !full,
+            last_edit: new Date()
+        }))
+
+        if (error) {
+            console.error(error)
+            toast({
+                title: t('toast.error.title'),
+                description: t('toast.error.description', { room: name }),
+                variant: 'destructive'
             })
-        } catch (err) {
-            console.error(err)
         }
     }
 
@@ -78,21 +85,31 @@ export const AdminRoom = ({ id, name, description, full, last_edit }: { id: stri
 
     const changeAvailability = async () => {
         setElapsedTime('0:00')
-        try {
-            await updateDoc(doc(db, 'rooms', id), {
-                full: !full,
-                last_edit: new Date()
+
+        const [error] = await catchError(updateDoc(doc(db, 'rooms', id), {
+            full: !full,
+            last_edit: new Date()
+        }))
+
+        if (error) {
+            console.error(error)
+            return toast({
+                title: t('toast.error.title'),
+                description: t('toast.error.description', { room: name }),
+                variant: 'destructive'
             })
-        } catch (err) {
-            console.error(err)
         }
     }
 
     const deleteRoom = async () => {
-        try {
-            await deleteDoc(doc(db, 'rooms', id))
-        } catch (err) {
-            console.error(err)
+        const [error] = await catchError(deleteDoc(doc(db, 'rooms', id)))
+        if (error) {
+            console.error(error)
+            return toast({
+                title: t('error.delete.title'),
+                description: t('error.delete.description', { room: name }),
+                variant: 'destructive'
+            })
         }
     }
 
@@ -115,19 +132,19 @@ export const AdminRoom = ({ id, name, description, full, last_edit }: { id: stri
      }, [last_edit])
 
     const copyID = async () => {
-        try {
-            await navigator.clipboard.writeText(id)
-            toast({
-                title: t('copyID.success')
-            })
-        } catch (err) {
-            console.error(err)
-            toast({
+        const [error] = await catchError(navigator.clipboard.writeText(id))
+        if (error) {
+            console.error(error)
+            return toast({
                 title: t('copyID.error'),
                 description: t('copyID.errorDescription'),
                 variant: 'destructive'
             })
         }
+
+        toast({
+            title: t('copyID.success')
+        })
     }
  
     return (

@@ -18,6 +18,7 @@ import { addDoc, collection } from "firebase/firestore"
 import { db } from "@fb"
 import { useToast } from "@/hooks/use-toast"
 import { useTranslations } from "next-intl"
+import { catchError } from "@/utils/catch-error"
 
 const formSchema = z.object({
     name: z.string({ message: 'Nazwa pokoju nie może być pusta' }),
@@ -34,27 +35,26 @@ export const AddRoom = () => {
     })
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        try {
-            await addDoc(collection(db, 'rooms'), {
-                name: values.name,
-                description: values.description,
-                last_edit: new Date(),
-                full: false
-            })
+        const [error] = await catchError(addDoc(collection(db, 'rooms'), {
+            name: values.name,
+            description: values.description,
+            last_edit: new Date(),
+            full: false
+        }))
 
-            form.reset()
-
-            toast({
-                title: t('toast.success')
-            })
-        } catch (err) {
-            toast({
+        if (error) {
+            console.error(error)
+            return toast({
                 title: t('toast.error.title'),
                 description: t('toast.error.description'),
                 variant: 'destructive'
             })
-            console.error(err)
         }
+
+        form.reset()
+        toast({
+            title: t('toast.success')
+        })
     }
 
     return (

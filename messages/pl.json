@@ -83,6 +83,10 @@
                 "delete": {
                     "title": "Błąd usuwając użytkownika",
                     "description": "Użytkownik nie został usunięty. Aby poznać szczęgóły, zobacz konsolę"
+                },
+                "callUsers": {
+                    "title": "Błąd pobierając użytkowników",
+                    "description": "Nie udało się pobrać użytkowników. Aby poznać szczęgóły, zobacz konsolę"
                 }
             },
             "success": {
@@ -211,6 +215,14 @@
                 "descriptionPlaceholder": "ex. Meeting room"
             }
         },
+        "Room": {
+            "toast": {
+                "error": {
+                    "title": "Wystąpił błąd",
+                    "description": "Nie udało się zaktualizować pokoju {room}. Zobacz konsolę"
+                }
+            }
+        },
         "AdminRoom": {
             "copyID": {
                 "success": "Skopiowano ID pokoju",
@@ -222,7 +234,17 @@
                 "enter": "Zajmij pokój"
             },
             "copy": "Kopiuj ID",
-            "delete": "Usuń pokój"
+            "delete": "Usuń pokój",
+            "toast": {
+                "error": {
+                    "title": "Wystąpił błąd",
+                    "description": "Nie udało się zaktualizować pokoju {room}. Zobacz konsolę",
+                    "delete": {
+                        "title": "Wystąpił błąd",
+                        "description": "Nie udało się usunąć pokoju {room}. Zobacz konsolę"
+                    }
+                }
+            }
         },
         "Legend": {
             "free": "Pokój wolny",

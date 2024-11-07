@@ -18,6 +18,7 @@ import { db } from "@fb";
 import { Input } from "@shadcn/input";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { catchError } from "@/utils/catch-error";
 
 const formSchema = z.object({
     name: z.string().optional(),
@@ -37,26 +38,24 @@ export const UpdateDialog = ({ id, name, description }: { id: string, name: stri
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         if (!values.name) values.name = name
         if (!values.description) values.description = description
-        try {
-            await updateDoc(doc(db, 'rooms', id), {
+        const [error] = await catchError(updateDoc(doc(db, 'rooms', id), {
                 name: values.name,
                 description: values.description,
-            })
-            
-            form.reset()
-
-            toast({
-                title: t('toast.success')
-            })
-        }
-        catch (err) {
-            console.error(err)
-            toast({
+            }))
+        
+        if (error) {
+            console.error(error)
+            return toast({
                 title: t('toast.error.title'),
                 description: t('toast.error.description'),
                 variant: 'destructive'
             })
         }
+
+        form.reset()
+        toast({
+            title: t('toast.success')
+        })
     }
 
     return (

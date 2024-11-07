@@ -13,6 +13,8 @@ import { useRouter } from 'next/navigation'
 import { handleLoginError } from '@/utils/firebase/handleAuthError'
 import { logIn } from '@/utils/firebase/auth-client'
 import { useTranslations } from 'next-intl'
+import { catchError } from '@/utils/catch-error'
+import { AuthError } from 'firebase/auth'
 
 
 export default function LogIn() {
@@ -31,10 +33,9 @@ export default function LogIn() {
     })
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        try {
-            await logIn(values.email, values.password)
-        } catch (err: any) {
-            const { title, description, action } = handleLoginError(err, t)
+        const [error] = await catchError(logIn(values.email, values.password))
+        if (error) {
+            const { title, description, action } = handleLoginError(error as AuthError, t)
             toast({
                 variant: 'destructive',
                 title: title,
