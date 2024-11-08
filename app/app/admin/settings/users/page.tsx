@@ -15,6 +15,7 @@ import { deleteUser } from "@/features/app/admin/settings/actions/delete-user";
 import { changeAdminStatus } from "@/features/app/admin/settings/actions/change-admin-status";
 import { RotateCcw } from "lucide-react";
 import { UserRow } from "@/features/app/admin/settings/components/user-row";
+import { catchError } from "@/utils/catch-error";
 
 export default function AdminSettingsUsersPage() {
     const [ usersList, setUsersList ] = useState<ListUsersResult | null>(null)
@@ -27,7 +28,17 @@ export default function AdminSettingsUsersPage() {
 
     const callUsers = async () => {
         setLoading(true)
-        const users = await getAllUsers()
+        const [error, users] = await catchError(getAllUsers())
+        if (error) {
+            console.error(error)
+            toast({
+                title: t('error.callUsers.title'),
+                description: t('error.callUsers.description'),
+                variant: "destructive"
+            })
+            setLoading(false)
+            return
+        }
         setUsersList(users)
         setLoading(false)
     }
@@ -51,14 +62,16 @@ export default function AdminSettingsUsersPage() {
     }
 
     const handleDelete = async (id: string) => {
-        const { error} = await deleteUser(id)
-        if (error) return (
+        const [error] = await catchError(deleteUser(id))
+        if (error) {
+            console.error(error)
             toast({
                 title: t('error.delete.title'),
                 description: t('error.delete.description'),
                 variant: "destructive"
             })
-        )
+            return
+        }
 
         if (adminsList?.includes(id)) {
             await changeAdminStatus(id, adminsList, true)

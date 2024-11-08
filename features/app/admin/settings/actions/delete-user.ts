@@ -1,14 +1,14 @@
 'use server'
 
+import { catchError } from "@/utils/catch-error"
 import { getAuth } from "firebase-admin/auth"
 
 export const deleteUser = async (id: string) => {
-    try {
-        await getAuth()
-            .deleteUser(id)
-        return { success: true, error: null }
-    } catch (err) {
-        console.error(err)
-        return { success: false, error: JSON.parse(JSON.stringify(err)) }
+    const [error] = await catchError(getAuth()
+        .deleteUser(id))
+
+    if (error) {
+        console.error(error)
+        throw error
     }
 }

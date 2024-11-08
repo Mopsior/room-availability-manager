@@ -5,16 +5,17 @@ import { changeAdminStatus } from "../actions/change-admin-status";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
 import { UserRecord } from "firebase-admin/auth";
+import { catchError } from "@/utils/catch-error";
 
 export const UserRow = ({ user, adminsList, onDelete }: { user: UserRecord, adminsList: string[] | null, onDelete: any }) => {
     const { toast } = useToast()
     const t = useTranslations('AdminSettingsPage.users')
 
     const onChange = async (id: string) => {
-        const {error} = await changeAdminStatus(id, adminsList)
+        const [error] = await catchError(changeAdminStatus(id, adminsList))
         if (error) {
             console.error(error)
-            toast({
+            return toast({
                 title: t('error.status.title'),
                 description: t('error.status.description'),
                 variant: "destructive"

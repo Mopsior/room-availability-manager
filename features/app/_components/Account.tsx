@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { LogOut, Settings } from "lucide-react"
+import { catchError } from "@/utils/catch-error"
 
 const auth = getAuth()
 export const Account = ({ haveSettings }: { haveSettings?: boolean }) =>{
@@ -20,19 +21,19 @@ export const Account = ({ haveSettings }: { haveSettings?: boolean }) =>{
     const router = useRouter()
 
     const logOut = async () => {
-        try {
-            await signOut(auth)
-            toast({
-                title: t('signout.success'),
-            })
-            router.push('/login')
-
-        } catch (error) {
+        const [error] = await catchError(signOut(auth))
+        if (error) {
             toast({
                 title: t('signout.error'),
                 variant: 'destructive'
             })
+            return
         }
+
+        toast({
+            title: t('signout.success'),
+        })
+        router.push('/login')
     }
 
     return (

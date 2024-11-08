@@ -16,6 +16,8 @@ import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { CorrectSignUpPopup } from '@/features/auth/components/correct-signup-popup'
 import { checkAllowRegister } from '@/features/app/actions/check-allow-register'
+import { catchError } from '@/utils/catch-error'
+import { AuthError } from 'firebase/auth'
 
 export default function SignUp() {
     const t = useTranslations('auth')
@@ -76,12 +78,9 @@ export default function SignUp() {
             })
         }
 
-        try {
-            const user = await createAccount(values.email, values.password)
-            console.log(user)
-            return setOpenPopup(true)
-        } catch (err: any) {
-            const { title, description, action } = handleSignUpError(err, t)
+        const [error, user] = await catchError(createAccount(values.email, values.password))
+        if (error) {
+            const { title, description, action } = handleSignUpError(error as AuthError, t)
             return toast({
                 variant: 'destructive',
                 title: title,
@@ -89,6 +88,9 @@ export default function SignUp() {
                 action: action ? <Button variant={'outline'} className='bg-transparent' onClick={() => { router.push('/login') }}>{t('login.text')}</Button> : undefined
             })
         }
+
+        console.log(user)
+        return setOpenPopup(true)
     }
 
     return (
