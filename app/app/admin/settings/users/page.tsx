@@ -63,13 +63,15 @@ export default function AdminSettingsUsersPage() {
 
     const handleDelete = async (id: string) => {
         const [error] = await catchError(deleteUser(id))
-        if (error) return (
+        if (error) {
+            console.error(error)
             toast({
                 title: t('error.delete.title'),
                 description: t('error.delete.description'),
                 variant: "destructive"
             })
-        )
+            return
+        }
 
         if (adminsList?.includes(id)) {
             await changeAdminStatus(id, adminsList, true)

@@ -42,6 +42,7 @@ export default function LogIn() {
                 description: description,
                 action: action ? <Button variant={'outline'} className='bg-transparent' onClick={() => { router.push(action) }}>{t('login.text')}</Button> : undefined
             })
+            return
         }
     }
 

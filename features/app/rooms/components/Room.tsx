@@ -37,6 +37,7 @@ export const Room = ({ id, name, description, full, last_edit }: { id: string, n
                 description: t('toast.error.description', { room: name }),
                 variant: 'destructive'
             })
+            return
         }
     }
 

@@ -2,9 +2,5 @@
 import { revalidatePath } from 'next/cache'
 
 export const revalidate = async (path: string) => {
-    try {
-        revalidatePath(path)
-    } catch (err) {
-        console.error(err)
-    }
+    revalidatePath(path)
 }

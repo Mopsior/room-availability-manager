@@ -27,6 +27,7 @@ export const Account = ({ haveSettings }: { haveSettings?: boolean }) =>{
                 title: t('signout.error'),
                 variant: 'destructive'
             })
+            return
         }
 
         toast({
