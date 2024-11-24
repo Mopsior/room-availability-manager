@@ -18,8 +18,11 @@ export const AdminAccountRegister = async (email: string, password: string) => {
         }))
     if (authError) return [JSON.parse(JSON.stringify(authError)), null]
 
-    const [firestoreError] = await catchError(db.collection('config').doc('roles').set({ admin: [authData.uid] }))
-    if (firestoreError) return [JSON.parse(JSON.stringify(firestoreError)), null]
+    const [firestoreRoleError] = await catchError(db.collection('config').doc('roles').set({ admin: [authData.uid] }))
+    if (firestoreRoleError) return [JSON.parse(JSON.stringify(firestoreRoleError)), null]
+
+    const [firestoreFinishError] = await catchError(db.collection('config').doc('settings').update({ appAfterSetup: true }))
+    if (firestoreFinishError) return [JSON.parse(JSON.stringify(firestoreFinishError)), null]
 
     return [null, JSON.parse(JSON.stringify(authData))]
 }
