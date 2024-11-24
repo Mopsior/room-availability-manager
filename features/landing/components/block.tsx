@@ -17,7 +17,7 @@ export const Block = ({ title, icon, children }: { title: string, icon: any, chi
         <Card className={styles.block}>
             <CardHeader className='flex-row gap-2'>
                 {icon}
-                <CardTitle className={styles.title}>{title}</CardTitle>
+                <CardTitle className={`!mt-0 ${styles.title}`}>{title}</CardTitle>
             </CardHeader>
             <CardContent className={styles.content}>
                 <p dangerouslySetInnerHTML={{__html: children}} />

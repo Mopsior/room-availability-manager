@@ -1,0 +1,296 @@
+{
+    "universal": {
+        "edit": "Edit",
+        "save": "Save",
+        "options": "Options",
+        "add": "Add",
+        "settings": "Settings"
+    },
+    "buttons": {
+        "appReferal": "Go to app",
+        "githubRepo": "GitHub Repository"
+    },
+    "LandingPage": {
+        "hero": {
+            "title": "The only app you need to manage your rooms.",
+            "example": "Click and test how it works",
+            "exampleRoom": {
+                "name": "101",
+                "description": "Meeting room"
+            }
+        },
+        "features": {
+            "first": {
+                "title": "Fast setup",
+                "description": "Ready to run in just a few minutes - without unnecessary complications"
+            },
+            "second": {
+                "title": "Easy to use",
+                "description": "Room control is easy as <b>one click</b>. For real! Test it above."
+            },
+            "third": {
+                "title": "Personalisation friendly",
+                "description": "Project is <b>open source</b> and made to edit content and appearance as easy as possible."
+            }
+        },
+        "redirects": {
+            "title": "See you on the other side!"
+        },
+        "metadata": {
+            "title": "Room Availability Manager",
+            "description": "The only app you need to manager your rooms - Made by @mopsior"
+        }
+    },
+    "App": {
+        "placeName": "Acme Company",
+        "description": "Click button with room name to chaneg its availability",
+        "metadata": {
+            "title": "Acme Company - Room Manager",
+            "description": "Controlling rooms availability"
+        }
+    },
+    "AdminPage": {
+        "title": "Admin Panel",
+        "description": "To manage rooms, expand the options using button",
+        "metadata": {
+            "title": "Acme Company - Room Manager",
+            "description": "Controlling rooms availability"
+        }
+    },
+    "AdminSettingsPage": {
+        "title": "Settings",
+        "description": "Change app settings.",
+        "text": "Choose tab from above",
+        "tabs": {
+            "users": "Users",
+            "config": "Configuration"
+        },
+        "users": {
+            "reload": "Refresh",
+            "table": {
+                "email": "E-mail",
+                "uid": "UID",
+                "creationTime": "Creation date",
+                "lastSignInTime": "Last sign in",
+                "isAdmin": "Is admin?",
+                "delete": "Delete"
+            },
+            "error": {
+                "status": {
+                    "title": "Error while changing user status",
+                    "description": "User status was not changed. To see more details, check the console"
+                },
+                "delete": {
+                    "title": "Error while deleting user",
+                    "description": "User was not deleted. To see more details, check the console"
+                },
+                "callUsers": {
+                    "title": "Error while fetching users",
+                    "description": "Users were not fetched. To see more details, check the console"
+                }
+            },
+            "success": {
+                "status": {
+                    "title": "Changed user status successfully",
+                    "description": "User status was changed successfully"
+                },
+                "delete": {
+                    "title": "Użytkownik został usunięty pomyślnie",
+                    "description": "User was deleted successfully"
+                }
+            }
+        },
+        "config": {
+            "allowRegister": {
+                "title": "Allow user registration",
+                "description": "Allow users to register in the app"
+            },
+            "disableLandingPage": {
+                "title": "Disable landing page",
+                "description": "Show landing page while entering the app"
+            }
+        }
+    },
+    "LoginPage": {
+        "metadata": {
+            "title": "Login: Acme Company - Room Manager",
+            "description": "Login panel to room availability manager"
+        }
+    },
+    "SignupPage": {
+        "metadata": {
+            "title": "Registration: Acme Company - Room Manager",
+            "description": "Registration to room availability manager"
+        }
+    },
+    "auth": {
+        "signout": {
+            "text": "Sign out",
+            "success": "Signed out successfully",
+            "error": "Error while signing out"
+        },
+        "signin": {
+            "text": "Sign in",
+            "success": "Signed in successfully",
+            "disabled": {
+                "title": "Registration disabled",
+                "description": "Registration is disabled by the administrator. Contact the administrator for more information"
+            }
+        },
+        "login": {
+            "text": "Log in"
+        },
+        "form": {
+            "schemaMessage": {
+                "email": "Incorrect e-mail address",
+                "password": {
+                    "min": "Password must have at least 6 characters",
+                    "max": "Password cannot have more than 4096 characters",
+                    "lowerCase": "Password must have at least one lowercase letter",
+                    "upperCase": "Password must have at least one uppercase letter",
+                    "number": "Password must have at least one number",
+                    "special": "Password must have at least one special character"
+                }
+            },
+            "email": {
+                "label": "E-mail",
+                "placeholder": "test@example.com"
+            },
+            "password": {
+                "label": "Password",
+                "placeholder": "Password",
+                "helperText": "Password must have at least 6 characters (including at least 1 lowercase and 1 uppercase), 1 number and 1 special character"
+            }
+        },
+        "error": {
+            "logIn": {
+                "invalidCredential": {
+                    "title": "Login error",
+                    "description": "Invalid credentials. Try again"
+                },
+                "wrongPassword": {
+                    "title": "Login error",
+                    "description": "Invalid credentials. Try again"
+                },
+                "default": {
+                    "title": "Login error",
+                    "description": "An error occurred while logging in. Try again"
+                }
+            },
+            "signUp": {
+                "emailAlreadyInUse": {
+                    "title": "Registration error",
+                    "description": "An account with this email already exists. Try to log in to your account"
+                },
+                "invalidEmail": {
+                    "title": "Registration error",
+                    "description": "Incorrect e-mail address"
+                },
+                "default": {
+                    "title": "Registration error",
+                    "description": "An error occurred while registering. Try again"
+                }
+            }
+        }
+    },
+    "components": {
+        "SwitchPanel": {
+            "selectPlaceholder": "Select panel",
+            "adminPanel": "Admin Panel",
+            "userPanel": "User Panel",
+            "settingsPanel": "Settings"
+        },
+        "UpdateDialog": {
+            "toast": {
+                "success": "Room updated",
+                "error": {
+                    "title": "Error occured",
+                    "description": "Room update failed. Check the console"
+                }
+            },
+            "edit": "Edit room",
+            "editDescription": "Edit selected room",
+            "form": {
+                "name": "Room name",
+                "namePlaceholder": "ex. 101",
+                "description": "Name description",
+                "descriptionPlaceholder": "ex. Meeting room"
+            }
+        },
+        "Room": {
+            "toast": {
+                "error": {
+                    "title": "Error occured",
+                    "description": "Room {room} update failed. Check the console"
+                }
+            }
+        },
+        "AdminRoom": {
+            "copyID": {
+                "success": "ID copied",
+                "error": "Cannot copy ID",
+                "errorDescription": "Check browser settings and try again"
+            },
+            "occupation": {
+                "leave": "Leave room",
+                "enter": "Enter room"
+            },
+            "copy": "Copy ID",
+            "delete": "Delete room",
+            "toast": {
+                "error": {
+                    "title": "Error occured",
+                    "description": "Room {room} update failed. Check the console",
+                    "delete": {
+                        "title": "Error occured",
+                        "description": "Room {room} deletion failed. Check the console"
+                    }
+                }
+            }
+        },
+        "Legend": {
+            "free": "Free room",
+            "occupied": "Occupied room"
+        },
+        "AddRoom": {
+            "form": {
+                "schemaMessage": {
+                    "name": "Room name can't be empty",
+                    "description": "Room description can't be empty"
+                },
+                "name": {
+                    "label": "Name",
+                    "placeholder": "ex. 101"
+                },
+                "description": {
+                    "label": "Description",
+                    "placeholder": "ex. Meeting Room"
+                }
+            },
+            "toast": {
+                "success": "Room added",
+                "error": {
+                    "title": "Error occured",
+                    "description": "Room addition failed. Check the console"
+                }
+            },
+            "dialog": {
+                "button": "Add room",
+                "title": "Add new room",
+                "description": "Create new room for users to control"
+            }
+        },
+        "Control": {
+            "toast": {
+                "success": {
+                    "title": "Setting saved",
+                    "description": "Setting saved: {settingName}"
+                },
+                "error": {
+                    "title": "Error occured",
+                    "description": "Failed to save {settingName}. Check the console"
+                }
+            }
+        }
+    }
+}
