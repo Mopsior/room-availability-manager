@@ -4,6 +4,8 @@ export const handleLoginError = (err: AuthError, t: any) => {
     switch (err.code) {
         case 'auth/invalid-credential':
             return { title: t('error.logIn.invalidCredential.title'), description: t('error.logIn.invalidCredential.description'), action: null } 
+        case 'auth/wrong-password':
+            return { title: t('error.logIn.wrongPassword.title'), description: t('error.logIn.wrongPassword.description'), action: null }
         default:
             return { title: t('error.logIn.default.title'), description: t('error.logIn.default.description'), action: '/signup' }
     }

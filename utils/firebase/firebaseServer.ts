@@ -12,5 +12,6 @@ const app = getApps().length === 0 ?
 }) 
 : getApps()[0]
 
+export default app
 export const auth = getAuth(app)
 export const db = getFirestore(app)

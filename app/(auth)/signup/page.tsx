@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 import { handleSignUpError } from '@/utils/firebase/handleAuthError'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { CorrectSignUpPopup } from '@/features/auth/components/correct-signup-popup'
+import { CorrectSignUpPopup } from '@/components/correct-signup-popup'
 import { checkAllowRegister } from '@/features/app/actions/check-allow-register'
 import { catchError } from '@/utils/catch-error'
 import { AuthError } from 'firebase/auth'
@@ -96,7 +96,7 @@ export default function SignUp() {
     return (
         <div className={styles.container}>
             <Card className={`shadow-lg ${styles.card}`}>
-                {openPopup ? <CorrectSignUpPopup /> : (
+                {openPopup ? <CorrectSignUpPopup buttonText={t('login.text')}>{t('signin.success')}</CorrectSignUpPopup> : (
                     <>
                         <CardHeader>
                             <CardTitle>{t('signin.text')}</CardTitle>

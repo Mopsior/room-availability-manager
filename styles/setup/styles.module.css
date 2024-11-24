@@ -1,0 +1,28 @@
+.title {
+    padding: 20px;
+    text-align: center;
+}
+
+.title p {
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.title h1, .error_title {
+    font-size: 28px;
+    line-height: 1; 
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+.main {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    .main {
+        width: 90%;
+    }
+}

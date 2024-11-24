@@ -131,6 +131,7 @@
         },
         "signin": {
             "text": "Zarejestruj się",
+            "success": "Zarejestrowano pomyślnie",
             "disabled": {
                 "title": "Rejestracja wyłączona",
                 "description": "Rejestracja jest wyłączona przez administratora. Skontaktuj się z administratorem, aby uzyskać więcej informacji"
@@ -167,6 +168,10 @@
                     "title": "Błąd logowania",
                     "description": "Niepoprawne dane logowania. Spróbuj ponownie"
                 },
+                "wrongPassword": {
+                    "title": "Błąd logowania",
+                    "description": "Niepoprawne hasło. Spróbuj ponownie"
+                },
                 "default": {
                     "title": "Błąd logowania",
                     "description": "Wystąpił błąd podczas logowania. Upewnij się, że masz konto"
@@ -189,9 +194,6 @@
         }
     },
     "components": {
-        "correct-signup-popup": {
-            "label": "Zarejestrowano pomyślnie!"
-        },
         "SwitchPanel": {
             "selectPlaceholder": "Wybierz panel",
             "adminPanel": "Panel Administracyjny",
