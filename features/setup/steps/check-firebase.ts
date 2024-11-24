@@ -39,7 +39,9 @@ const checkFirebaseConnection = async () => {
 }
 
 export const checkFirebase = async () => {
-    await checkVariables()
-    await checkFirebaseConnection()
+    const [variableError] = await catchError(checkVariables())
+    if (variableError) return [variableError, false]
+    const [firebaseError] = await catchError(checkFirebaseConnection())
+    if (firebaseError) return [firebaseError, false]
     return true
 }

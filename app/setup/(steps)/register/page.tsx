@@ -12,13 +12,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { catchError } from "@/utils/catch-error";
 
 export default function AdminAccountRegisterPage() {
     const [success, setSuccess] = useState(false)
     const { toast } = useToast()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        const [error] = await AdminAccountRegister(values.email, values.password)
+        const [error] = await catchError(AdminAccountRegister(values.email, values.password))
         if (error) {
             console.error(error)
             toast({
