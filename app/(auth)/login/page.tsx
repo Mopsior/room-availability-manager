@@ -35,6 +35,7 @@ export default function LogIn() {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         const [error] = await catchError(logIn(values.email, values.password))
         if (error) {
+            console.error(error)
             const { title, description, action } = handleLoginError(error as AuthError, t)
             toast({
                 variant: 'destructive',
