@@ -1,30 +1,44 @@
-# Room Availability Manager
+<h1 align="center">Room Availability Manager</h1>
+<h4 align="center">
+    <a href="https://room-availability-manager.vercel.app">Preview</a> |
+    [Self-host](#quick-start) |
+    <a>Documentation</a>
+</h4>
+<h3 align="center">Fast and easy-to-setup room management software for anyone.<br /></h2>
+<figure>
+![Desktop Mockup](./public/repo/desktop.png")
+<figcaption align="center">User interface mockup</figcaption>
+</figure>
 
-## Folder Structure
-`/app` - normal next /app router. Don't have any components or things other than actual page
+## About
+It's simple (but usefull for many cases) system that works perfectly in:
+- 🏫&nbsp;Open days in schools/universities
+- 🏛️&nbsp;Small interactive museum
+- 🗺️&nbsp;Field games
 
-`/features` - structure for all local utils: if component is not whole project-wide, you put it here - structure:
+App is battle tested and helps in organizing events in all scale - not only indoors! You can also mark places on the outside 🌱
 
-```yaml
-features/<page name>/                    
-                    <feature name>/components/    # components for specific feature
-                    _components/                  # components for specific route, but not whole app
+## Features
+- 💯&nbsp;**Free** & open-source,
+- 📱&nbsp;Responsive and mobile-first,
+- 🔄&nbsp;**Realtime updates** on all devices
+- 🔐&nbsp;User registration control
+- 🚀&nbsp;Easy setup **under 4 minutes**
+- 🎨&nbsp;Fully customizable
+
+## Quick Start
+First, **copy project**. Then **install all dependecies**. Project is created using Node v20.18.0
+```bash
+npm install
 ```
-
-`/styles` - all styles (for easier themeing)
-```yaml
-styles/
-        variables.css         # global file
-        /<page name>/... -    # this same folder structure as in /features. Uses this same name as component with .module.css suffix
+Then, **paste all variables** into `.env.production` file.
+<!-- change to Gtihub Wiki page -->
+Next, **build and run project.**
+```bash
+npm run build &&
+npm run start
 ```
+**Go to [localhost:3000/setup](http://localhost:3000/setup) and go through setup process** (Everything that can be done automatically will be done for you)
 
-`/hooks` & `/lib` - made by libraries (shadcn and tailwind)
-
-`/utils` - firebase & context
-
-## Paths
-`@shadcn/*` -> `components/ui/*`
-
-`@fb/*` -> `utils/firebase/*`
-
-`@fb` -> `./utils/firebase/firebase.ts`
+## License
+Project is under [GPL-3.0 license *(click for notes what you can and what you can't)*](https://choosealicense.com/licenses/gpl-3.0/)

@@ -154,7 +154,7 @@ export const AdminRoom = ({ id, name, description, full, last_edit }: { id: stri
             <span className={styles.small}>{id}</span>
             <h3 className={styles.title}>{name}</h3>
             <p>{description}</p>
-            {full && <p className={styles.small}>{elapsedTime}</p>}
+            {full && <p className={`mb-[50px] ${styles.small}`}>{elapsedTime}</p>}
             <Popover>
                 <PopoverTrigger asChild>
                     <Button variant='outline' className={`mt-2 ${styles.button}`}>{uniT('options')}</Button>
