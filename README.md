@@ -1,14 +1,17 @@
 <h1 align="center">Room Availability Manager</h1>
 <h4 align="center">
     <a href="https://room-availability-manager.vercel.app">Preview</a> |
-    [Self-host](#quick-start) |
+    <a href="#quick-start">Self-host</a> |
     <a>Documentation</a>
 </h4>
 <h3 align="center">Fast and easy-to-setup room management software for anyone.<br /></h2>
-<figure>
-![Desktop Mockup](./public/repo/desktop.png")
-<figcaption align="center">User interface mockup</figcaption>
+<div align="center">
+<figure align="center">
+    
+![Desktop Mockup](/public/repo/desktop.png)
+<figcaption>User interface mockup</figcaption>
 </figure>
+</div>
 
 ## About
 It's simple (but usefull for many cases) system that works perfectly in:
