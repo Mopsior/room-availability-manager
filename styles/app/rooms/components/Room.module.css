@@ -13,7 +13,6 @@
 
 .admin_block {
     position: relative;
-    height: 230px;
     width: 200px;
 }
 
@@ -34,6 +33,7 @@
 .small {
     color: rgb(115 115 115);
     font-size: 15px;
+    margin-bottom: 50px;
 }
 
 .content {
