@@ -2,7 +2,7 @@
 <h4 align="center">
     <a href="https://room-availability-manager.vercel.app">Preview</a> |
     <a href="#quick-start">Self-host</a> |
-    <a>Documentation</a>
+    <a href="https://github.com/Mopsior/room-availability-manager/wiki">Documentation</a>
 </h4>
 <h3 align="center">Fast and easy-to-setup room management software for anyone.<br /></h2>
 <div align="center">
